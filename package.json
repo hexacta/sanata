@@ -1,0 +1,12 @@
+{
+	"name": "sanata",
+	"version": "0.0.0",
+	"scripts": {
+		"start": "run-p start:web start:server",
+		"start:web": "npm start --prefix web",
+		"start:server": "npm start --prefix server"
+	},
+	"devDependencies": {
+		"npm-run-all": "^4.0.2"
+	}
+}
