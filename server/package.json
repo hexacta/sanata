@@ -1,0 +1,44 @@
+{
+  "name": "sanata-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "babel src -d dist",
+    "build:watch": "npm run build -- --watch",
+    "debug": "node --nolazy --debug-brk=5858 dist/server.js",
+    "test": "ava src/**/*.test.js",
+    "test:watch": "npm test -- --watch",
+    "cli": "node dist/server-cli.js"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "hx-markov-chain": "^1.2.0",
+    "hx-tokenizer": "^1.0.0",
+    "restify": "^4.3.0",
+    "twit": "^2.2.5"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-cli": "^6.23.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-register": "^6.23.0"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  }
+}
