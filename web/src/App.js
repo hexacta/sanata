@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormMotion from "./FormMotion";
 import VerticalPanelMotion from "./VerticalPanelMotion";
 import StatusBar from "./StatusBar";
+import LandingMessage from "./LandingMessage";
 import TweetContainerMotion from "./TweetContainerMotion";
 import service from "./model-service";
 import "./App.css";
@@ -61,6 +62,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <VerticalPanelMotion show={!this.state.username}>
+          <LandingMessage />
+        </VerticalPanelMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
         <TweetContainerMotion
           tweet={this.state.tweet}
