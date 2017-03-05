@@ -38,7 +38,7 @@ export default {
     let loop = 30;
     while (page.length > 1 && loop) {
       loop -= 1;
-      options.max_id = page[page.length-1].id_str;            
+      options.max_id = page[page.length - 1].id_str;
       const resp = await twitter.get("statuses/user_timeline", options);
       page = resp.data;
       page.pop();
