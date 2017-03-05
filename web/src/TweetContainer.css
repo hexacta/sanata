@@ -63,16 +63,16 @@
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 1;
-	color: #55acee;
+	color: rgba(10, 172, 142, 1);
 	background-color: #fff;
-	border: 1px solid #55acee;
+	border: 1px solid rgba(10, 172, 142, 1);
 	border-radius: 4px;
 	height: 17px;
 	cursor: pointer;
 }
 
 .icon {
-	color: #55acee;
+	color: rgba(10, 172, 142, 1);
 	display: inline-block;
 	height: 1.25em;
 	background-repeat: no-repeat;
@@ -87,5 +87,5 @@
 .tweet-button:hover {
 	color: #fff;
 	text-decoration: none;
-	background-color: #55acee;
+	background-color: rgba(10, 172, 142, 1);
 }
