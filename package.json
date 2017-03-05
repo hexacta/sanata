@@ -5,8 +5,9 @@
 		"start": "run-p start:web start:server",
 		"start:web": "npm start --prefix web",
 		"start:server": "npm start --prefix server",
-		"test": "prettier-check web/src/**/*.js server/src/**/*.js",
-		"style": "prettier web/src/**/*.js server/src/**/*.js --write"
+		"test": "run-s style-check",
+		"style": "prettier web/src/**/*.js server/src/**/*.js --write",
+		"style-check": "prettier-check web/src/**/*.js server/src/**/*.js"
 	},
 	"devDependencies": {
 		"npm-run-all": "^4.0.2",
