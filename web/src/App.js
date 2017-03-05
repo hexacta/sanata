@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormMotion from "./FormMotion";
-import StatusBarMotion from "./StatusBarMotion";
+import VerticalPanelMotion from "./VerticalPanelMotion";
+import StatusBar from "./StatusBar";
 import TweetContainerMotion from "./TweetContainerMotion";
 import service from "./model-service";
 import "./App.css";
@@ -66,10 +67,9 @@ class App extends Component {
           changing={this.state.nextTweet}
           onChange={this.createNewTweet}
         />
-        <StatusBarMotion
-          loading={this.isLoading}
-          username={this.state.username}
-        />
+        <VerticalPanelMotion show={this.isLoading}>
+          <StatusBar username={this.state.username} />
+        </VerticalPanelMotion>
       </div>
     );
   }
