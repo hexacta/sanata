@@ -6,13 +6,13 @@ class TweetContainer extends Component {
   get containerStyle() {
     return {
       minHeight: `${this.props.minHeight}vh`,
-			opacity: this.props.opacity
+      opacity: this.props.opacity
     };
   }
   render() {
     const tweet = this.props.tweet;
     if (!tweet) {
-      return <div style={this.containerStyle}/>;
+      return <div style={this.containerStyle} />;
     }
     return (
       <div style={this.containerStyle} className="tweet-container">

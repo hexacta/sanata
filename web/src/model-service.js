@@ -2,7 +2,6 @@ import markov from "hx-markov-chain";
 import tokenizer from "hx-tokenizer";
 
 function getInfo(username) {
-  // TODO add polyfill when needed
   return fetch(`model/${username}`).then(response => {
     if (response.ok) {
       return response.json();
