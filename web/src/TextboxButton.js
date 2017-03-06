@@ -6,7 +6,7 @@ class TextboxButton extends Component {
     this.handleSumbit = this.handleSumbit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.state = { value: "jack" };
+    this.state = { value: "noah" };
   }
 
   handleSumbit(e) {
