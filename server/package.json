@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon src/server.js --exec babel-node",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
     "build": "babel src -d dist",
     "test": "ava src/**/*.test.js",
     "test:watch": "npm test -- --watch",
@@ -20,7 +22,8 @@
     "babel-cli": "^6.23.0",
     "babel-preset-env": "^1.1.8",
     "babel-register": "^6.23.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1"
   },
   "ava": {
     "require": [
