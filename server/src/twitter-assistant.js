@@ -1,60 +1,93 @@
 import Twit from "twit";
 
-export default {
-  getInfo: async (username, lastTweetId) => {
-    const twitter = new Twit({
-      consumer_key: process.env.TWITTER_CONSUMER_KEY,
-      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-      app_only_auth: true
-    });
+// Maximum number of pages to fetch
+const MAX_PAGES = 25;
 
-    const options = {
-      screen_name: username,
-      count: 1000,
-      trim_user: false,
-      exclude_replies: true, //TODO include replies and RT and filter later
-      include_rts: false,
-      since_id: lastTweetId || "1"
-      // max_id: "831997324146724864"
-    };
+/**
+ * Fetch no more than 200 tweets, maybe less (limited by twitter api)
+ * @param {Object} twitter 
+ * @param {Object} options 
+ * @returns {Promise<Array>} 
+ */
+async function getPage(twitter, options) {
+  const opts = {
+    count: 1000,
+    trim_user: false,
+    exclude_replies: true,
+    include_rts: false,
+    since_id: 1
+  };
+  Object.assign(opts, options);
+  const response = await twitter.get("statuses/user_timeline", opts);
+  return response.data.filter(t => t.id_str !== opts.max_id);
+}
 
-    const response = await twitter.get("statuses/user_timeline", options);
-    let tweets = response.data;
-    // console.log(JSON.stringify(response, null, "\t"));
+/**
+ * Fetch user timeline tweets until:
+ * 1. there are no more tweets, or
+ * 2. lastTweetId is reached, or
+ * 3. hit the limit of MAX_PAGES
+ * @param {Object} twitter 
+ * @param {String} username 
+ * @param {String} lastTweetId 
+ * @returns {Promise<Array>} array of tweets
+ */
+async function getAll(twitter, username, lastTweetId) {
+  const opts = {
+    screen_name: username,
+    since_id: lastTweetId || "1"
+  };
 
-    if (!tweets.length) {
-      return {
-        any: false,
-        tweets: [],
-        lastTweetId: lastTweetId
-      };
+  let page = null;
+  const pages = [];
+  do {
+    if (page) {
+      opts.trim_user = true;
+      opts.max_id = page[page.length - 1].id_str;
     }
+    page = await getPage(twitter, opts);
+    pages.push(page);
+    // console.log(page.length);
+  } while (page.length && pages.length < MAX_PAGES);
 
-    const lastTweet = tweets[0];
-    const user = lastTweet.user;
-    console.log(JSON.stringify(lastTweet, null, 2));
+  const tweets = pages.reduce((a, b) => concat(a, b), []);
+  return tweets;
+}
 
-    let page = tweets;
-    let loop = 30;
-    while (page.length > 1 && loop) {
-      loop -= 1;
-      options.max_id = page[page.length - 1].id_str;
-      const resp = await twitter.get("statuses/user_timeline", options);
-      page = resp.data;
-      page.pop();
-      tweets = tweets.concat(page);
-      console.log(page.length);
-    }
+/**
+ * Get tweets and user information posted after lastTweetId
+ * @param {String} username 
+ * @param {String} lastTweetId 
+ * @returns {Promise<Object>}
+ */
+async function getInfo(username, lastTweetId) {
+  const twitter = new Twit({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    app_only_auth: true
+  });
 
-    const texts = tweets.map(t => t.text);
-    // console.log(JSON.stringify(texts, null, '\t'));
+  const tweets = await getAll(twitter, username, lastTweetId);
 
+  if (!tweets.length) {
     return {
-      any: true,
-      tweets: texts,
-      lastTweetId: lastTweet.id_str,
-      fullname: user.name,
-      avatar: user.profile_image_url
+      any: false,
+      tweets: [],
+      lastTweetId: lastTweetId
     };
   }
+
+  const lastTweet = tweets[0];
+  const user = lastTweet.user;
+  return {
+    any: true,
+    tweets: tweets.map(t => t.text),
+    lastTweetId: lastTweet.id_str,
+    fullname: user.name,
+    avatar: user.profile_image_url
+  };
+}
+
+export default {
+  getInfo: getInfo
 };

@@ -18,12 +18,6 @@ dotenv.config();
 
 const server = restify.createServer();
 
-server.use(function crossOrigin(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  return next();
-});
-
 server.get("/model/:username", respond);
 server.listen(8080, () => {
   console.log("%s listening at %s", server.name, server.url);
@@ -49,4 +43,3 @@ async function main(username) {
     model: newModel
   };
 }
-// main("sarah_edo");

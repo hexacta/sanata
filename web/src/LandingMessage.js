@@ -11,7 +11,7 @@ class LandingMessage extends Component {
     };
     return (
       <div style={style}>
-        Enter any twitter username to auto-generate fake tweets: 
+        Enter any twitter username to auto-generate fake tweets:
       </div>
     );
   }
