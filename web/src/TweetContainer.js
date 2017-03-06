@@ -25,7 +25,7 @@ class TweetContainer extends Component {
             </div>
             <span className="tweet-button" onClick={this.props.onChange}>
               <ShuffleIcon />
-              {" Shuffle"}
+              {" New"}
             </span>
           </div>
           <span className="tweet-text">{tweet.text}</span>
