@@ -1,5 +1,6 @@
 import Twit from "twit";
 
+// TODO move to config
 // Maximum number of pages to fetch
 const MAX_PAGES = 25;
 
@@ -70,17 +71,12 @@ async function getInfo(username, lastTweetId) {
   const tweets = await getAll(twitter, username, lastTweetId);
 
   if (!tweets.length) {
-    return {
-      any: false,
-      tweets: [],
-      lastTweetId: lastTweetId
-    };
+    return null;
   }
 
   const lastTweet = tweets[0];
   const user = lastTweet.user;
   return {
-    any: true,
     tweets: tweets.map(t => t.text),
     lastTweetId: lastTweet.id_str,
     fullname: user.name,

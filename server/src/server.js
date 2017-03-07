@@ -15,6 +15,8 @@ server.get("/model/:username", async (req, res, next) => {
   next();
 });
 
-server.listen(8081, () => {
+server.listen(8080, () => {
   console.log(`${server.name} listening at ${server.url}`);
 });
+
+process.on("unhandledRejection", r => console.error(r));

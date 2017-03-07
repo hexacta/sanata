@@ -8,24 +8,36 @@ import trainer from "./trainer";
  * @param {String} username 
  */
 async function getInfo(username) {
-  const storedInfo = await db.getInfo(username);
-  const oldModel = storedInfo.model;
-  const lastProcessedTweetId = storedInfo.lastTweetId || 0;
-  const newInfo = await twitter.getInfo(username, lastProcessedTweetId);
-  const newTweets = newInfo.tweets;
-  const lastTweetId = newInfo.lastTweetId;
-  const newModel = await trainer.train(newTweets, oldModel);
+  const storedInfo = await db.get(username);
+  //TODO if it is from less than 24hs ago, return
 
-  db.save(username, newModel, lastTweetId);
+  const info = storedInfo || { username };
+  const newInfo = await twitter.getInfo(username, info.lastTweetId);
+  if (!newInfo) {
+    console.log("No info from twitter");
+  } else {
+    const { tweets, lastTweetId, fullname, avatar } = newInfo;
+    const newModel = await trainer.train(tweets, info.model);
 
-  // console.log(JSON.stringify(newModel, null, "\t"));
+    info.model = newModel;
+    info.lastTweetId = lastTweetId;
+    info.fullname = fullname;
+    info.avatar = avatar;
+  }
 
-  return {
-    username: username,
-    fullname: newInfo.fullname,
-    avatar: newInfo.avatar,
-    model: newModel
-  };
+  info.lastUpdate = new Date();
+  db.save(info);
+
+  // TODO don't return id, and maybe lastTweetId
+  return info;
+  // info = {
+  //   model,
+  //   username,
+  //   lastTweetId,
+  //   fullname,
+  //   avatar,
+  //   lastUpdate
+  // }
 }
 
 export default {
