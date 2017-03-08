@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import logger from "winston";
 
 let db = null;
 async function getDb() {
@@ -6,10 +7,10 @@ async function getDb() {
     //TODO move to .env
     //docker run -d -p 27017:27017 mongo
     const url = "mongodb://localhost:27017/sanata";
-    console.log("connecting to db...");
+    logger.info("Connecting to db...");
     db = await MongoClient.connect(url);
     //TODO support working without database
-    console.log("connected");
+    logger.info("Connected to db");
   }
   return db;
 }

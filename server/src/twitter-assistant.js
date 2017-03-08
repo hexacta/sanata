@@ -1,4 +1,5 @@
 import Twit from "twit";
+import logger from "winston";
 
 // TODO move to config
 // Maximum number of pages to fetch
@@ -48,7 +49,7 @@ async function getAll(twitter, username, lastTweetId) {
     }
     page = await getPage(twitter, opts);
     pages.push(page);
-    // console.log(page.length);
+    logger.debug(`@${username} - New page with ${page.length} tweets`);
   } while (page.length && pages.length < MAX_PAGES);
 
   const tweets = pages.reduce((a, b) => Array.concat(a, b), []);

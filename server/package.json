@@ -16,7 +16,8 @@
     "hx-tokenizer": "^1.0.0",
     "mongodb": "^2.2.24",
     "restify": "^4.3.0",
-    "twit": "^2.2.5"
+    "twit": "^2.2.5",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "ava": "^0.18.2",
