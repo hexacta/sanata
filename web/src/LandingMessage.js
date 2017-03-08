@@ -7,7 +7,8 @@ class LandingMessage extends Component {
       height: `${this.props.motion * 50}px`,
       color: "#555",
       textAlign: "center",
-      maxWidth: "250px"
+      maxWidth: "250px",
+      overflow: "hidden"
     };
     return (
       <div style={style}>
