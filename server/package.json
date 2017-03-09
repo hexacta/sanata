@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon src/server.js --exec babel-node",
+
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "babel src -d dist",
+    "transpile": "babel src -d dist",
+    "build": "npm run transpile",
+
     "test": "ava src/**/*.test.js",
     "test:watch": "npm test -- --watch",
     "cli": "babel-node src/mongo.js"

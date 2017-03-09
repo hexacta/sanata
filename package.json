@@ -10,6 +10,10 @@
 		"start:web": "npm start --prefix web",
 		"start:server": "npm start --prefix server",
 
+		"build": "run-p build:web build:server",
+		"build:web": "npm run build --prefix web",
+		"build:server": "npm run build --prefix server",
+
 		"test": "run-s style-check",
 		"style": "prettier web/src/**/*.js server/src/**/*.js --write",
 		"style-check": "prettier-check web/src/**/*.js server/src/**/*.js"
