@@ -52,7 +52,7 @@ async function getAll(twitter, username, lastTweetId) {
     logger.debug(`@${username} - New page with ${page.length} tweets`);
   } while (page.length && pages.length < MAX_PAGES);
 
-  const tweets = pages.reduce((a, b) => Array.concat(a, b), []);
+  const tweets = pages.reduce((a, b) => a.concat(b), []);
   return tweets;
 }
 

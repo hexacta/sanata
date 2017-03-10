@@ -1,6 +1,8 @@
 version: '2'
 services:
   node:
+    env_file: 
+      - .env
     build: 
       context: ..
       dockerfile: docker/node.dockerfile
