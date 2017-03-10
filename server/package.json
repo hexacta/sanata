@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon src/server.js --exec babel-node",
-
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "transpile": "babel src -d dist",
-    "build": "npm run transpile",
-
+    "install:prod": "yarn install --modules-folder dist/node_modules --production --pure-lockfile",
+    "build": "npm run transpile && npm run install:prod",
     "test": "ava src/**/*.test.js",
     "test:watch": "npm test -- --watch",
     "cli": "babel-node src/mongo.js"
