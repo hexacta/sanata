@@ -11,13 +11,16 @@
 		"start:server": "npm start --prefix server",
 
 		"build": "run-p build:web build:server",
-		"build:web": "npm run build --prefix web",
-		"build:server": "npm run build --prefix server",
+		"build:web": "cd web && npm run build",
+		"build:server": "cd server && npm run build",
 
 		"predockerize": "npm run build",
 		"dockerize": "run-p dockerize:web dockerize:server",
 		"dockerize:web": "docker build -t sanata-web -f docker/nginx.dockerfile .",
 		"dockerize:server": "docker build -t sanata-srv -f docker/node.dockerfile .",
+
+		"preup": "npm run build",
+		"up": "docker-compose -f docker/docker-compose.yml up --build",
 
 		"test": "run-s style-check",
 		"style": "prettier web/src/**/*.js server/src/**/*.js --write",

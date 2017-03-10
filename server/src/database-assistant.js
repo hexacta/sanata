@@ -6,7 +6,8 @@ async function getDb() {
   if (!db) {
     //TODO move to .env
     //docker run -d -p 27017:27017 mongo
-    const url = "mongodb://localhost:27017/sanata";
+    // const url = "mongodb://localhost:27017/sanata";
+    const url = "mongodb://mongo:27017/sanata";
     logger.info("Connecting to db...");
     db = await MongoClient.connect(url);
     //TODO support working without database

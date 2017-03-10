@@ -1,0 +1,11 @@
+version: '2'
+services:
+  node:
+    build: 
+      context: ..
+      dockerfile: docker/node.dockerfile
+    ports:
+     - "8000:8080"
+  mongo:
+    image: "mongo"
+#docker-compose -f docker/docker-compose.yml up
