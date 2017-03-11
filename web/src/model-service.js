@@ -2,7 +2,7 @@ import markov from "hx-markov-chain";
 import tokenizer from "hx-tokenizer";
 
 function getInfo(username) {
-  return fetch(`model/${username}`).then(response => {
+  return fetch(`api/model/${username}`).then(response => {
     if (response.ok) {
       return response.json();
     }
