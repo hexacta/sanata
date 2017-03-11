@@ -8,6 +8,12 @@ services:
       dockerfile: docker/node.dockerfile
     ports:
      - "8000:8080"
+  nginx:
+    build: 
+      context: ..
+      dockerfile: docker/nginx.dockerfile
+    ports:
+     - "80:80"
   mongo:
     image: "mongo"
-#docker-compose -f docker/docker-compose.yml up
+#docker-compose -f docker/docker-compose.yml up --build
