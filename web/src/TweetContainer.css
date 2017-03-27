@@ -1,47 +1,46 @@
-.tweet-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.tweet-list {
+	padding-top: 15px;
+	border-bottom: 1px solid #e1e8ed;
+	min-height: 100vh;
 }
 
-.tweet {
-	background: white;
-	max-width: 500px;
+.tweet-container {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
 	width: 80vw;
-	margin: 10px auto;
-	padding: 20px;
-	border-radius: 6px;
+	max-width: 500px;
+	min-height: 50px;
 	border: 1px solid #e1e8ed;
+	border-bottom: 0;
+	background: white;
+	padding: 9px 12px;
+	font-family: Arial, sans-serif;
+	line-height: 18px;
 }
 
 .tweet-header {
 	display: flex;
-	height: 48px;
-	margin-bottom: 15px;
 	align-items: center;
-}
-
-.tweet-account {
-	flex: 1;
+	flex-flow: row;
 }
 
 .tweet-fullname {
-	font-size: 18px;
-	line-height: 1.25;
+	font-size: 14px;
 	font-weight: bold;
-	color: #292f33;
+	color: #14171a;
 	display: block;
+	padding-right: 5px;
 }
 
 .tweet-username {
-	font-size: 14px;
-	color: #8899a6;
-	line-height: 18px;
+	font-size: 13px;
+	color: #657786;
 }
 
 .tweet-text {
-	color: #292f33;
-	font-size: 20px;
+	color: #14171a;
+	font-size: 14px;
 	white-space: normal;
 	word-wrap: break-word;
 	margin: 0;
@@ -52,6 +51,7 @@
 
 .tweet-avatar {
 	width: 48px;
+	min-width: 48px;
 	height: 48px;
 	border-radius: 5px;
 	margin-right: 10px;

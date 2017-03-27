@@ -16,13 +16,11 @@ class TweetContainer extends Component {
     }
     return (
       <div style={this.containerStyle} className="tweet-container">
+        <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
         <div className="tweet">
           <div className="tweet-header">
-            <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
-            <div className="tweet-account">
-              <strong className="tweet-fullname">{tweet.fullname}</strong>
-              <span className="tweet-username">@{tweet.username}</span>
-            </div>
+            <strong className="tweet-fullname">{tweet.fullname}</strong>
+            <span className="tweet-username">@{tweet.username}</span>
           </div>
           <span className="tweet-text">{tweet.text}</span>
         </div>

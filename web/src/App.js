@@ -28,7 +28,7 @@ class App extends Component {
   };
 
   load = info => {
-    const newTweets = Array.from({length: 10}, () => service.getTweet(info));
+    const newTweets = Array.from({ length: 10 }, () => service.getTweet(info));
     this.setState({
       info: info,
       newTweets: newTweets
@@ -45,7 +45,7 @@ class App extends Component {
       tweets: tweets,
       newTweets: newTweets
     });
-    setTimeout(this.mountTweet, 200);
+    setTimeout(this.mountTweet, 120);
   };
 
   loadMore = () => {

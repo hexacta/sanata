@@ -10,10 +10,10 @@ class TweetList extends Component {
   handleScroll = e => {
     var doc = document.documentElement;
     var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-		var bottom = doc.clientHeight + top;
-		var remaining = doc.scrollHeight - bottom;
+    var bottom = doc.clientHeight + top;
+    var remaining = doc.scrollHeight - bottom;
 
-    if (remaining < 200) {
+    if (remaining < 100) {
       this.props.loadMore();
     }
     // console.log(doc.scrollHeight - top, doc.clientHeight);
@@ -21,15 +21,15 @@ class TweetList extends Component {
 
   render() {
     const { tweets } = this.props;
-		if (!tweets || !tweets.length) return null;
+    if (!tweets || !tweets.length) return null;
     return (
-      <div style={{ minHeight: "100vh" }} ref={this.listDidMount}>
+      <div className="tweet-list">
         {tweets.map((tweet, i) => (
           <SingleMotion key={i} show>
             <TweetContainer tweet={tweet} />
           </SingleMotion>
         ))}
-				<div style={{ height: "300px" }}/>
+        <div style={{ height: "100px" }} />
       </div>
     );
   }
