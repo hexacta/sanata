@@ -9,6 +9,8 @@
 		"start": "run-p start:web start:server",
 		"start:web": "npm start --prefix web",
 		"start:server": "npm start --prefix server",
+		"start:mongo": "docker run --rm -p 27017:27017 mongo",
+		"start:all": "run-p start:mongo start",
 
 		"build": "run-p build:web build:server",
 		"build:web": "cd web && npm run build",
