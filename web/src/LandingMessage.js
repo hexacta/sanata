@@ -4,7 +4,7 @@ class LandingMessage extends Component {
   render() {
     const style = {
       opacity: this.props.motion,
-      height: `${this.props.motion * 50}px`,
+      height: `${this.props.motion * 40}px`,
       color: "#555",
       textAlign: "center",
       maxWidth: "250px",
