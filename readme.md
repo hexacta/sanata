@@ -20,6 +20,7 @@ Once you have them, create a `.env` file inside the `server` folder, like this:
 ```
 TWITTER_CONSUMER_KEY=yourkey
 TWITTER_CONSUMER_SECRET=yoursecret
+MONGO_URL=mongodb://localhost:27017/sanata
 ```
 
 ## License
