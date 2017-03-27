@@ -3,7 +3,8 @@ import FormMotion from "./FormMotion";
 import VerticalPanelMotion from "./VerticalPanelMotion";
 import StatusBar from "./StatusBar";
 import LandingMessage from "./LandingMessage";
-import TweetContainerMotion from "./TweetContainerMotion";
+// import TweetContainerMotion from "./TweetContainerMotion";
+import TweetList from "./TweetList";
 import service from "./model-service";
 import "./App.css";
 
@@ -13,7 +14,8 @@ class App extends Component {
     this.state = {
       username: null,
       tweet: null,
-      nextTweet: null
+      nextTweet: null,
+      tweets: []
     };
     this.handleLoad = this.handleLoad.bind(this);
     this.createNewTweet = this.createNewTweet.bind(this);
@@ -55,7 +57,8 @@ class App extends Component {
   setInfo(info) {
     this.setState({
       info: info,
-      tweet: service.getTweet(info)
+      tweet: service.getTweet(info),
+      tweets: [1,2,3,4,5,6].map(() => service.getTweet(info))
     });
   }
 
@@ -66,11 +69,12 @@ class App extends Component {
           <LandingMessage />
         </VerticalPanelMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
-        <TweetContainerMotion
+        {/*<TweetContainerMotion
           tweet={this.state.tweet}
           changing={this.state.nextTweet}
           onChange={this.createNewTweet}
-        />
+        />*/}
+        <TweetList tweets={this.state.tweets}/>
         <VerticalPanelMotion show={this.isLoading}>
           <StatusBar username={this.state.username} />
         </VerticalPanelMotion>
