@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import ShuffleIcon from "./ShuffleIcon";
 import "./TweetContainer.css";
 
 class TweetContainer extends Component {
   get containerStyle() {
     return {
-      minHeight: `${this.props.minHeight}vh`,
-      opacity: this.props.opacity
+      // minHeight: `${this.props.minHeight}vh`,
+      opacity: this.props.motion,
+      transform: `translateY(${100 - this.props.motion * 100}%)`
     };
   }
   render() {
@@ -23,10 +23,6 @@ class TweetContainer extends Component {
               <strong className="tweet-fullname">{tweet.fullname}</strong>
               <span className="tweet-username">@{tweet.username}</span>
             </div>
-            <span className="tweet-button" onClick={this.props.onChange}>
-              <ShuffleIcon />
-              {" New"}
-            </span>
           </div>
           <span className="tweet-text">{tweet.text}</span>
         </div>

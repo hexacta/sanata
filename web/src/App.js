@@ -3,64 +3,62 @@ import FormMotion from "./FormMotion";
 import VerticalPanelMotion from "./VerticalPanelMotion";
 import StatusBar from "./StatusBar";
 import LandingMessage from "./LandingMessage";
-// import TweetContainerMotion from "./TweetContainerMotion";
 import TweetList from "./TweetList";
 import service from "./model-service";
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: null,
-      tweet: null,
-      nextTweet: null,
-      tweets: []
-    };
-    this.handleLoad = this.handleLoad.bind(this);
-    this.createNewTweet = this.createNewTweet.bind(this);
-    this.setInfo = this.setInfo.bind(this);
-    this.changeTweet = this.changeTweet.bind(this);
-  }
+  state = {
+    username: null,
+    tweets: [],
+    newTweets: []
+  };
 
   get isLoading() {
-    return this.state.username && !this.state.tweet;
+    return this.state.username && !this.state.tweets.length;
   }
 
-  handleLoad(username) {
+  handleLoad = username => {
     this.setState({
       username: username,
-      tweet: null,
-      nextTweet: null
+      tweets: []
     });
 
-    service.getInfo(username).then(this.setInfo);
-  }
+    service.getInfo(username).then(this.load);
+  };
 
-  createNewTweet() {
-    this.setState({
-      nextTweet: service.getTweet(this.state.info)
-    });
-
-    setTimeout(this.changeTweet, 500);
-  }
-
-  changeTweet() {
-    this.setState(prev => {
-      return {
-        tweet: prev.nextTweet,
-        nextTweet: null
-      };
-    });
-  }
-
-  setInfo(info) {
+  load = info => {
+    const newTweets = Array.from({length: 10}, () => service.getTweet(info));
     this.setState({
       info: info,
-      tweet: service.getTweet(info),
-      tweets: [1,2,3,4,5,6].map(() => service.getTweet(info))
+      newTweets: newTweets
     });
-  }
+
+    this.mountTweet();
+  };
+
+  mountTweet = () => {
+    if (!this.state.newTweets.length) return;
+    const newTweets = this.state.newTweets.slice();
+    const tweets = this.state.tweets.concat(newTweets.pop());
+    this.setState({
+      tweets: tweets,
+      newTweets: newTweets
+    });
+    setTimeout(this.mountTweet, 200);
+  };
+
+  loadMore = () => {
+    if (!this.state.info) return;
+    this.setState(ps => {
+      const info = ps.info;
+      const tweet = service.getTweet(info);
+      return {
+        newTweets: ps.newTweets.concat(tweet)
+      };
+    });
+    this.mountTweet();
+  };
 
   render() {
     return (
@@ -69,12 +67,7 @@ class App extends Component {
           <LandingMessage />
         </VerticalPanelMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
-        {/*<TweetContainerMotion
-          tweet={this.state.tweet}
-          changing={this.state.nextTweet}
-          onChange={this.createNewTweet}
-        />*/}
-        <TweetList tweets={this.state.tweets}/>
+        <TweetList tweets={this.state.tweets} loadMore={this.loadMore} />
         <VerticalPanelMotion show={this.isLoading}>
           <StatusBar username={this.state.username} />
         </VerticalPanelMotion>
