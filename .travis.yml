@@ -23,6 +23,7 @@ env:
     - NODE_DEPLOYMENT_NAME=node
     - NGINX_DEPLOYMENT_CONTAINER_NAME=nginx
     - NODE_DEPLOYMENT_CONTAINER_NAME=node
+    - MONGO_URL=mongodb://mongo:27017/sanata
 script:
   - npm test
   - npm build    
@@ -31,7 +32,7 @@ before_deploy:
   - source /home/travis/google-cloud-sdk/path.bash.inc
   - gcloud --quiet version
   - gcloud --quiet components update
-  - gcloud --quiet components beta update
+  # - gcloud --quiet components beta update
   - gcloud --quiet components update kubectl
 deploy:
   - provider: script
