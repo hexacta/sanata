@@ -57,7 +57,7 @@ class App extends Component {
         </HeightMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
         <TweetListBuffer tweets={state.tweets} />
-        <HeightMotion show={this.isLoading} height={30} >
+        <HeightMotion show={this.isLoading} height={30}>
           <StatusBar username={state.username} />
         </HeightMotion>
       </div>
