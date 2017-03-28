@@ -7,7 +7,7 @@ docker build -t gcr.io/${PROJECT_NAME_TEST}/${NGINX_IMAGE_NAME}:$TRAVIS_COMMIT -
 docker build -t gcr.io/${PROJECT_NAME_TEST}/${NODE_IMAGE_NAME}:$TRAVIS_COMMIT -f docker/node.dockerfile .
 
 echo $GCLOUD_SERVICE_KEY_TEST | base64 --decode -i > ${HOME}/gcloud-service-key.json
-gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+gcloud auth activate-service-account travis@sanata-test.iam.gserviceaccount.com --key-file ${HOME}/gcloud-service-key.json
 
 gcloud --quiet config set project $PROJECT_NAME_TEST
 gcloud --quiet config set container/cluster $CLUSTER_NAME
