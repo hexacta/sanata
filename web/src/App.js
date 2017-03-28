@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import FormMotion from "./FormMotion";
 import VerticalPanelMotion from "./VerticalPanelMotion";
+import HeightMotion from "./HeightMotion";
 import StatusBar from "./StatusBar";
-import LandingMessage from "./LandingMessage";
 import TweetListBuffer from "./TweetListBuffer";
 import service from "./model-service";
 import onScrollToBottom from "./scroller";
@@ -50,15 +50,16 @@ class App extends Component {
   };
 
   render() {
+    const state = this.state;
     return (
       <div className="container">
-        <VerticalPanelMotion show={!this.state.username}>
-          <LandingMessage />
-        </VerticalPanelMotion>
+        <HeightMotion show={!state.username} height={40} className="landing">
+          Enter any twitter username to auto-generate fake tweets:
+        </HeightMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
-        <TweetListBuffer tweets={this.state.tweets} />
+        <TweetListBuffer tweets={state.tweets} />
         <VerticalPanelMotion show={this.isLoading}>
-          <StatusBar username={this.state.username} />
+          <StatusBar username={state.username} />
         </VerticalPanelMotion>
       </div>
     );
