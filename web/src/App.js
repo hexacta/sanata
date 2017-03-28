@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import FormMotion from "./FormMotion";
-import VerticalPanelMotion from "./VerticalPanelMotion";
 import HeightMotion from "./HeightMotion";
 import StatusBar from "./StatusBar";
 import TweetListBuffer from "./TweetListBuffer";
@@ -58,9 +57,9 @@ class App extends Component {
         </HeightMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
         <TweetListBuffer tweets={state.tweets} />
-        <VerticalPanelMotion show={this.isLoading}>
+        <HeightMotion show={this.isLoading} height={30} >
           <StatusBar username={state.username} />
-        </VerticalPanelMotion>
+        </HeightMotion>
       </div>
     );
   }

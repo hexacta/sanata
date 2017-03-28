@@ -21,3 +21,8 @@ html, body, #root {
   max-width: 250px;
   overflow: hidden;
 }
+
+.status-bar {
+  color: #555;
+  padding-top: 30px
+}

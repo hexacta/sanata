@@ -8,7 +8,7 @@ class TweetList extends Component {
     return (
       <div className="tweet-list">
         {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet} />)}
-        <div style={{ height: "100px" }} />
+        <div style={{ height: "300px" }} />
       </div>
     );
   }

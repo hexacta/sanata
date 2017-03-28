@@ -5,7 +5,7 @@ export default callback => {
     var bottom = doc.clientHeight + top;
     var remaining = doc.scrollHeight - bottom;
 
-    if (remaining < 200) {
+    if (remaining < 400) {
       callback(remaining);
     }
     // console.log(doc.scrollHeight - top, doc.clientHeight);
