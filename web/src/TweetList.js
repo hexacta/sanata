@@ -1,22 +1,17 @@
 import React, { Component } from "react";
 import SingleMotion from "./SingleMotion";
 import TweetContainer from "./TweetContainer";
+import onScrollToBottom from "./scroller";
 
 class TweetList extends Component {
-  componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll);
+
+  state = {
+		mountedTweets: [],
+		unmountedTweets: []
   };
 
-  handleScroll = e => {
-    var doc = document.documentElement;
-    var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    var bottom = doc.clientHeight + top;
-    var remaining = doc.scrollHeight - bottom;
-
-    if (remaining < 200) {
-      this.props.loadMore();
-    }
-    // console.log(doc.scrollHeight - top, doc.clientHeight);
+  componentDidMount = () => {
+    onScrollToBottom(this.props.loadMore);
   };
 
   render() {

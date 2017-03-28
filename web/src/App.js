@@ -10,6 +10,7 @@ import "./App.css";
 class App extends Component {
   state = {
     username: null,
+    info: null,
     tweets: [],
     newTweets: []
   };
@@ -33,7 +34,6 @@ class App extends Component {
       info: info,
       newTweets: newTweets
     });
-
     this.mountTweet();
   };
 
