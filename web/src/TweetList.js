@@ -13,7 +13,7 @@ class TweetList extends Component {
     var bottom = doc.clientHeight + top;
     var remaining = doc.scrollHeight - bottom;
 
-    if (remaining < 100) {
+    if (remaining < 200) {
       this.props.loadMore();
     }
     // console.log(doc.scrollHeight - top, doc.clientHeight);

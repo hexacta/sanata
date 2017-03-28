@@ -6,6 +6,7 @@ class TweetContainer extends Component {
     return {
       // minHeight: `${this.props.minHeight}vh`,
       opacity: this.props.motion,
+      willChange: "transform, opacity",
       transform: `translateY(${100 - this.props.motion * 100}%)`
     };
   }
