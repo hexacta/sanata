@@ -11,7 +11,7 @@ services:
 notifications:
   email:
     on_success: never 
-    on_failure: always 
+    on_failure: never 
 env:
   global:
     - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
