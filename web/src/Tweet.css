@@ -17,6 +17,16 @@
 	padding: 9px 12px 12px 12px;
 	font-family: Arial, sans-serif;
 	line-height: 18px;
+
+	will-change: opacity, transform;
+	transition-property: opacity, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.tweet-container.entrance {
+	opacity: 0;
+	transform: translateY(100%);
 }
 
 .tweet-header {
@@ -88,4 +98,10 @@
 	color: #fff;
 	text-decoration: none;
 	background-color: rgba(10, 172, 142, 1);
+}
+
+.slide-in-bottom {
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-moz-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }

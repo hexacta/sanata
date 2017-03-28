@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TweetMotion from "./TweetMotion";
 import Tweet from "./Tweet";
 
 class TweetList extends Component {
@@ -8,11 +7,7 @@ class TweetList extends Component {
     if (!tweets || !tweets.length) return null;
     return (
       <div className="tweet-list">
-        {tweets.map((tweet, i) => (
-          <TweetMotion key={i} show>
-            <Tweet tweet={tweet} />
-          </TweetMotion>
-        ))}
+        {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet} />)}
         <div style={{ height: "100px" }} />
       </div>
     );
