@@ -1,9 +1,41 @@
+sudo: false
 language: node_js
 node_js:
   - "node"
-cache: yarn
+cache: 
+  directories:
+    - "$HOME/google-cloud-sdk/"
+services:
+  - docker
 notifications:
   email:
     on_success: never 
     on_failure: always 
-    
+env:
+  global:
+    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+    - PROJECT_NAME_TEST=sanata-test
+    - CLUSTER_NAME=sanata-cluster
+    - CLOUDSDK_COMPUTE_ZONE=us-central1-b
+    - NGINX_IMAGE_NAME=sanata-web
+    - NODE_IMAGE_NAME=sanata-srv
+    - NGINX_DEPLOYMENT_NAME=nginx
+    - NODE_DEPLOYMENT_NAME=node
+    - NGINX_DEPLOYMENT_CONTAINER_NAME=nginx
+    - NODE_DEPLOYMENT_CONTAINER_NAME=node
+script:
+  - npm test
+  - npm build    
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud --quiet version
+  - gcloud --quiet components update
+  - gcloud --quiet components beta update
+  - gcloud --quiet components update kubectl
+deploy:
+  - provider: script
+    script: gcloud/deploy-test.sh
+    skip_cleanup: true
+    on:
+      branch: master
