@@ -3,11 +3,6 @@ import SingleMotion from "./SingleMotion";
 import TweetContainer from "./TweetContainer";
 
 class TweetList extends Component {
-  state = {
-    mountedTweets: [],
-    unmountedTweets: []
-  };
-
   render() {
     const { tweets } = this.props;
     if (!tweets || !tweets.length) return null;
