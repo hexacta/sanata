@@ -3,6 +3,7 @@ language: node_js
 node_js:
   - "node"
 cache: 
+  yarn: true
   directories:
     - "$HOME/google-cloud-sdk/"
 services:

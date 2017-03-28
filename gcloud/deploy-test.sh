@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 docker build -t gcr.io/${PROJECT_NAME_TEST}/${NGINX_IMAGE_NAME}:$TRAVIS_COMMIT -f docker/nginx.dockerfile .
 docker build -t gcr.io/${PROJECT_NAME_TEST}/${NODE_IMAGE_NAME}:$TRAVIS_COMMIT -f docker/node.dockerfile .
