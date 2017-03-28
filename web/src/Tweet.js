@@ -1,22 +1,11 @@
 import React, { Component } from "react";
-import "./TweetContainer.css";
+import "./Tweet.css";
 
-class TweetContainer extends Component {
-  get containerStyle() {
-    return {
-      // minHeight: `${this.props.minHeight}vh`,
-      opacity: this.props.motion,
-      willChange: "transform, opacity",
-      transform: `translateY(${100 - this.props.motion * 100}%)`
-    };
-  }
+class Tweet extends Component {
   render() {
     const tweet = this.props.tweet;
-    if (!tweet) {
-      return <div style={this.containerStyle} />;
-    }
     return (
-      <div style={this.containerStyle} className="tweet-container">
+      <div className="tweet-container">
         <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
         <div className="tweet">
           <div className="tweet-header">
@@ -30,4 +19,4 @@ class TweetContainer extends Component {
   }
 }
 
-export default TweetContainer;
+export default Tweet;

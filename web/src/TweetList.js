@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SingleMotion from "./SingleMotion";
-import TweetContainer from "./TweetContainer";
+import TweetMotion from "./TweetMotion";
+import Tweet from "./Tweet";
 
 class TweetList extends Component {
   render() {
@@ -9,9 +9,9 @@ class TweetList extends Component {
     return (
       <div className="tweet-list">
         {tweets.map((tweet, i) => (
-          <SingleMotion key={i} show>
-            <TweetContainer tweet={tweet} />
-          </SingleMotion>
+          <TweetMotion key={i} show>
+            <Tweet tweet={tweet} />
+          </TweetMotion>
         ))}
         <div style={{ height: "100px" }} />
       </div>
