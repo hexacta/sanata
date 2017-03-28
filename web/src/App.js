@@ -5,6 +5,7 @@ import StatusBar from "./StatusBar";
 import LandingMessage from "./LandingMessage";
 import TweetList from "./TweetList";
 import service from "./model-service";
+import onScrollToBottom from "./scroller";
 import "./App.css";
 
 class App extends Component {
@@ -18,6 +19,10 @@ class App extends Component {
   get isLoading() {
     return this.state.username && !this.state.tweets.length;
   }
+
+  componentDidMount = () => {
+    onScrollToBottom(this.loadMore);
+  };
 
   handleLoad = username => {
     this.setState({
@@ -67,7 +72,7 @@ class App extends Component {
           <LandingMessage />
         </VerticalPanelMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
-        <TweetList tweets={this.state.tweets} loadMore={this.loadMore} />
+        <TweetList tweets={this.state.tweets} />
         <VerticalPanelMotion show={this.isLoading}>
           <StatusBar username={this.state.username} />
         </VerticalPanelMotion>

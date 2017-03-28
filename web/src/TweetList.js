@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import SingleMotion from "./SingleMotion";
 import TweetContainer from "./TweetContainer";
-import onScrollToBottom from "./scroller";
 
 class TweetList extends Component {
-
   state = {
-		mountedTweets: [],
-		unmountedTweets: []
-  };
-
-  componentDidMount = () => {
-    onScrollToBottom(this.props.loadMore);
+    mountedTweets: [],
+    unmountedTweets: []
   };
 
   render() {
