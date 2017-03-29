@@ -6,7 +6,7 @@
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "transpile": "babel src -d dist",
-    "install:prod": "yarn install --modules-folder dist/node_modules --production --pure-lockfile",
+    "install:prod": "yarn install --modules-folder dist/node_modules --production --pure-lockfile --verbose",
     "build": "npm run transpile && npm run install:prod",
     "test": "ava src/**/*.test.js",
     "test:watch": "npm test -- --watch",
