@@ -3,7 +3,7 @@
 set -e
 
 docker build -t gcr.io/${PROJECT_NAME_TEST}/${NGINX_IMAGE_NAME}:$TRAVIS_COMMIT -f docker/nginx.dockerfile .
-docker build -t gcr.io/${PROJECT_NAME_TEST}/${NODE_IMAGE_NAME}:$TRAVIS_COMMIT -f docker/node.dockerfile .
+docker build -t gcr.io/${PROJECT_NAME_TEST}/${NODE_IMAGE_NAME}:$TRAVIS_COMMIT -f docker/node.dockerfile --build-arg MONGO_URL=${MONGO_URL} .
 
 echo $GCLOUD_SERVICE_KEY_TEST | base64 --decode -i > ${HOME}/gcloud-service-key.json
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
