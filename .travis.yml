@@ -8,6 +8,7 @@ cache:
     - "$HOME/google-cloud-sdk/"
 services:
   - docker
+before_install: npm install yarn -g
 notifications:
   email:
     on_success: never 
