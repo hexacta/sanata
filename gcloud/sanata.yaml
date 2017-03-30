@@ -6,11 +6,12 @@ type: Opaque
 data:
   twitter-consumer-key: "output from [echo -n "your key" | base64]"
   twitter-consumer-secret: "output from [echo -n "your secret" | base64]"
+  mongo-url: "output from [echo -n "mongodb://mongo:27017/sanata" | base64]"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo
+  name: mongo-service
 spec:
   ports:
     - port: 27017
@@ -21,7 +22,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: mongo
+  name: mongo-deploy
 spec:
   replicas: 1
   template:
@@ -30,7 +31,7 @@ spec:
         app: mongo
     spec:
       containers:
-      - name: mongo
+      - name: mongo-container
         image: mongo
         ports:
         - containerPort: 27017
@@ -38,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node
+  name: node-service
 spec:
   ports:
     - port: 8080
@@ -49,7 +50,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: node
+  name: node-deploy
 spec:
   replicas: 1
   template:
@@ -58,8 +59,8 @@ spec:
         app: node
     spec:
       containers:
-      - name: node
-        image: gcr.io/sanata-test/sanata-srv
+      - name: node-container
+        image: gcr.io/sanata-prod/sanata-srv
         ports:
         - containerPort: 8080
         env:
@@ -73,11 +74,16 @@ spec:
             secretKeyRef:
               name: node-secret
               key: twitter-consumer-secret
+        - name: MONGO_URL
+          valueFrom:
+            secretKeyRef:
+              name: node-secret
+              key: mongo-url
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: nginx-service
 spec:
   type: LoadBalancer
   ports:
@@ -89,7 +95,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-deploy
 spec:
   replicas: 1
   template:
@@ -98,7 +104,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: gcr.io/sanata-test/sanata-web
+      - name: nginx-container
+        image: gcr.io/sanata-prod/sanata-web
         ports:
         - containerPort: 80
