@@ -12,6 +12,6 @@ install: false
 script:
   - echo $TRAVIS_TAG
   - echo $TRAVIS_BRANCH
-  - $TRAVIS_TAG =~ ^v?\d+\.\d+\.\d+$
-  - "$TRAVIS_TAG" =~ ^v?\d+\.\d+\.\d+$
-  - "$TRAVIS_TAG" =~ "^v?\d+\.\d+\.\d+$"
+  - if [ $TRAVIS_TAG =~ ^v?\d+\.\d+\.\d+$ ]; echo $TRAVIS_TAG; fi
+  - if [ "$TRAVIS_TAG" =~ ^v?\d+\.\d+\.\d+$ ]; echo $TRAVIS_TAG; fi
+  - if [ "$TRAVIS_TAG" =~ "^v?\d+\.\d+\.\d+$" ]; echo $TRAVIS_TAG; fi
