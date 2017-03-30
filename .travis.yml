@@ -4,14 +4,42 @@ node_js:
   - "node"
 cache: 
   yarn: true
+  directories:
+    - "$HOME/google-cloud-sdk/"
+services:
+  - docker
+before_install: npm install yarn -g
 notifications:
   email:
     on_success: never 
     on_failure: never 
-install: false
+env:
+  global:
+    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+    - PROJECT_PROD=sanata-prod
+    - PROJECT_TEST=sanata-test
+    - CLUSTER=sanata-cluster
+    - ZONE=us-central1-b
+    - NGINX_IMAGE=sanata-web
+    - NODE_IMAGE=sanata-srv
+    - NGINX_DEPLOYMENT=nginx-deploy
+    - NODE_DEPLOYMENT=node-deploy
+    - NGINX_CONTAINER=nginx-container
+    - NODE_CONTAINER=node-container
 script:
-  - echo $TRAVIS_TAG
-  - echo $TRAVIS_BRANCH
-  - if [ $TRAVIS_TAG =~ ^v?\d+\.\d+\.\d+$ ]; echo $TRAVIS_TAG; fi
-  - if [ "$TRAVIS_TAG" =~ ^v?\d+\.\d+\.\d+$ ]; echo $TRAVIS_TAG; fi
-  - if [ "$TRAVIS_TAG" =~ "^v?\d+\.\d+\.\d+$" ]; echo $TRAVIS_TAG; fi
+  - npm test
+  - npm run build    
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud --quiet version
+  - gcloud --quiet components update
+  # - gcloud --quiet components beta update
+  - gcloud --quiet components update kubectl
+deploy:
+  - provider: script
+    script: chmod +x gcloud/deploy-prod.sh && gcloud/deploy-prod.sh
+    skip_cleanup: true
+    on:
+      all_branches: true
+      condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
