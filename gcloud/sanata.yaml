@@ -11,7 +11,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-service
+  name: mongo
 spec:
   ports:
     - port: 27017
@@ -39,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-service
+  name: node
 spec:
   ports:
     - port: 8080
@@ -83,7 +83,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: nginx
 spec:
   type: LoadBalancer
   ports:
