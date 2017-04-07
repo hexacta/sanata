@@ -43,3 +43,8 @@ deploy:
     on:
       all_branches: true
       condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
+  - provider: script
+    script: chmod +x gcloud/deploy-test.sh && gcloud/deploy-test.sh
+    skip_cleanup: true
+    on:
+      branch: master
