@@ -57,6 +57,13 @@ class App extends Component {
         </HeightMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
         <TweetListBuffer tweets={state.tweets} />
+        <HeightMotion show={!state.username} height={45} className="hil">
+          An experiment from
+          <br />
+          <a href="https://showcase.hexacta.com/sanata">
+            Hexacta Innovation Labs
+          </a>
+        </HeightMotion>
         <HeightMotion show={this.isLoading} height={30}>
           <StatusBar username={state.username} />
         </HeightMotion>

@@ -22,6 +22,21 @@ html, body, #root {
   overflow: hidden;
 }
 
+.hil {
+  color: #555;
+  text-align: center;
+  padding-top: 20px;
+  line-height: 1.3em;
+  max-width: 250px;
+  overflow: hidden;
+}
+
+.hil a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
 .status-bar {
   color: #555;
   padding-top: 30px
