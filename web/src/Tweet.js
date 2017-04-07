@@ -25,7 +25,9 @@ class Tweet extends Component {
         <div className="tweet">
           <div className="tweet-header">
             <strong className="tweet-fullname">{tweet.fullname}</strong>
-            <span className="tweet-username">@{tweet.username}</span>
+            <span className="tweet-username">
+              <span className="fake">@fake</span>{tweet.username}
+            </span>
           </div>
           <span className="tweet-text">{tweet.text}</span>
         </div>
