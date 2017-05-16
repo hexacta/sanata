@@ -53,6 +53,11 @@ This project follows the "fork-and-pull" git workflow:
 
 Here is a good [step-by-step guide](http://stackoverflow.com/a/20956155/1325646).
 
+## Related Posts
+- [Decoupling front end and back end](https://engineering.hexacta.com/decoupling-front-end-and-back-end-530d55b998a5)
+- [Automatic deployment of multiple Docker containers to Google Container Engine using Travis](https://engineering.hexacta.com/automatic-deployment-of-multiple-docker-containers-to-google-container-engine-using-travis-e5d9e191d5ad)
+- [Triggering deploys with git tags](https://engineering.hexacta.com/triggering-deploys-with-git-tags-21993147352f)
+
 ## License
 
 MIT © [Hexacta](http://www.hexacta.com)
