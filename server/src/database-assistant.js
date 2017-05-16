@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import logger from "winston";
+import DbMock from "./database-mock";
 
 let db = null;
 async function getDb() {
@@ -9,14 +10,14 @@ async function getDb() {
 
   const url = process.env.MONGO_URL;
   if (!url) {
-    //TODO support working without database
-    logger.error("Database URL not found");
-    throw new Error("Missing database URL");
+    logger.warn("Database URL not found, using db mock");
+    db = new DbMock();
+  } else {
+    logger.info(`Connecting to db at ${url}...`);
+    db = await MongoClient.connect(url);
+    logger.info("Connected to db");
   }
 
-  logger.info(`Connecting to db at ${url}...`);
-  db = await MongoClient.connect(url);
-  logger.info("Connected to db");
   return db;
 }
 
