@@ -42,6 +42,17 @@ yarn run start:mongo
 ```
 >Don't forget to add (or uncomment) `MONGO_URL=mongodb://localhost:27017/sanata` in your .env file.
 
+## Contributing
+This project follows the "fork-and-pull" git workflow:
+
+1. Fork the repo on GitHub
+1. Clone the project to your own machine
+1. Commit changes to your own branch
+1. Push your work back up to your fork
+1. Submit a Pull request so that we can review your changes
+
+Here is a good [step-by-step guide](http://stackoverflow.com/a/20956155/1325646).
+
 ## License
 
 MIT © [Hexacta](http://www.hexacta.com)
