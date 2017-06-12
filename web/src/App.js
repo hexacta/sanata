@@ -14,6 +14,14 @@ class App extends Component {
     tweets: []
   };
 
+  constructor(props){
+    super(props);
+    if(this.props.match.params.username){
+      this.setState({username: this.props.match.params.username});
+      this.handleLoad(this.props.match.params.username);
+    }
+  }
+
   get isLoading() {
     return this.state.username && !this.state.tweets.length;
   }
@@ -27,6 +35,7 @@ class App extends Component {
       username: username,
       tweets: []
     });
+    this.props.history.push(`/${username}`);
     service.getInfo(username).then(this.load);
   };
 
