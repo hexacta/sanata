@@ -20,9 +20,17 @@ class App extends Component {
 
   componentDidMount = () => {
     onScrollToBottom(this.loadMore);
+    if (this.props.match.params.username) {
+      this.handleUsername(this.props.match.params.username);
+    }
   };
 
   handleLoad = username => {
+    this.props.history.push(`/${username}`);
+    this.handleUsername(username);
+  };
+
+  handleUsername = username => {
     this.setState({
       username: username,
       tweets: []
