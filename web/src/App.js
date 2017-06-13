@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount = () => {
     onScrollToBottom(this.loadMore);
-    if(this.props.match.params.username){
+    if (this.props.match.params.username) {
       this.handleUsername(this.props.match.params.username);
     }
   };
