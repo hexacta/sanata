@@ -14,30 +14,27 @@ class App extends Component {
     tweets: []
   };
 
-  constructor(props){
-    super(props);
-    if(this.props.match.params.username){
-      this.setState({info: null});
-      this.handleLoad(this.props.match.params.username);
-    }
-  }
-
   get isLoading() {
     return this.state.username && !this.state.tweets.length;
   }
 
   componentDidMount = () => {
     onScrollToBottom(this.loadMore);
+    if(this.props.match.params.username){
+      this.handleUsername(this.props.match.params.username);
+    }
   };
 
   handleLoad = username => {
+    this.props.history.push(`/${username}`);
+    this.handleUsername(username);
+  };
+
+  handleUsername = username => {
     this.setState({
       username: username,
       tweets: []
     });
-    if(!this.props.match.params.username){
-      this.props.history.push(`/${username}`);
-    }
     service.getInfo(username).then(this.load);
   };
 
