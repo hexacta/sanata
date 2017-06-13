@@ -64,8 +64,8 @@ async function getAll(twitter, username, lastTweetId) {
  */
 async function getInfo(username, lastTweetId) {
   const twitter = new Twit({
-    consumer_key: 'IwIASH4GHP5sSsUELu96y1cxv',
-    consumer_secret: 'yb6hwmjuXi0C6cidbWN785qro2rZ2ph4xfTToWVCmnW9LLn0l5',
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
     app_only_auth: true
   });
 
