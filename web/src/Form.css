@@ -22,7 +22,7 @@
 }
 
 .form input {
-	flex: 8;
+	flex: 1;
 	border: 0;
 	background-color: transparent;
 	height: 85%;
@@ -40,6 +40,5 @@
 
 .form span {
 	color: grey;
-	flex: 0;
 	margin-left: 8px;
 }
