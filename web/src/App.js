@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props){
     super(props);
     if(this.props.match.params.username){
-      this.setState({username: this.props.match.params.username});
+      this.setState({info: null});
       this.handleLoad(this.props.match.params.username);
     }
   }
@@ -35,7 +35,9 @@ class App extends Component {
       username: username,
       tweets: []
     });
-    this.props.history.push(`/${username}`);
+    if(!this.props.match.params.username){
+      this.props.history.push(`/${username}`);
+    }
     service.getInfo(username).then(this.load);
   };
 
