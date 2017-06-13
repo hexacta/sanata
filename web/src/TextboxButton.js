@@ -26,6 +26,7 @@ class TextboxButton extends Component {
   render() {
     return (
       <div style={this.props.style} className="wrapper">
+        <span>{this.props.bulletpoint}</span> 
         <input
           type="text"
           value={this.state.value}
