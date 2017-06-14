@@ -11,7 +11,8 @@ class App extends Component {
   state = {
     username: null,
     info: null,
-    tweets: []
+    tweets: [],
+    status: 'init'
   };
 
   get isLoading() {
@@ -33,17 +34,36 @@ class App extends Component {
   handleUsername = username => {
     this.setState({
       username: username,
-      tweets: []
+      tweets: [],
+      status: 'loading'
     });
-    service.getInfo(username).then(this.load);
+    service.getInfo(username).then(this.load).catch(this.loadError);
   };
 
   load = info => {
+    if(!info && !info.model){
+        this.setState({
+        info: info,
+        tweets: [],
+        status: 'done'
+      });
+      return null;
+    }
     const tweets = Array.from({ length: 10 }, () => service.getTweet(info));
     this.setState({
       info: info,
-      tweets: tweets
+      tweets: tweets,
+      status: 'done'
     });
+  };
+
+  loadError = info => {
+    this.setState({
+      info: info,
+      tweets: [],
+      status: 'done'
+    });
+    console.log("Error get info");
   };
 
   loadMore = () => {
@@ -63,7 +83,7 @@ class App extends Component {
         <HeightMotion show={!state.username} height={40} className="landing">
           Enter any twitter username to auto-generate fake tweets:
         </HeightMotion>
-        <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
+        <FormMotion loading={state.status === 'loading'} onChange={this.handleLoad} />
         <TweetListBuffer tweets={state.tweets} />
         <HeightMotion show={!state.username} height={45} className="hil">
           An experiment from
@@ -72,8 +92,11 @@ class App extends Component {
             Hexacta Innovation Labs
           </a>
         </HeightMotion>
-        <HeightMotion show={this.isLoading} height={30}>
+        <HeightMotion show={state.status === 'loading'} height={30}>
           <StatusBar username={state.username} />
+        </HeightMotion>
+        <HeightMotion show={state.status === 'done' && state.tweets.length === 0} height={40} className="landing">
+          Invalid username
         </HeightMotion>
       </div>
     );
