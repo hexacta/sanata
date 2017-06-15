@@ -6,7 +6,7 @@ function getInfo(username) {
     if (response.ok) {
       return response.json();
     }
-    
+
     throw new Error("Network response was not ok.");
   });
 }
@@ -24,7 +24,7 @@ function getTweet(info) {
 
 const txt = document.createElement("textarea");
 
-function decodeHtml(html) {  
+function decodeHtml(html) {
   txt.innerHTML = html;
   return txt.value;
 }
