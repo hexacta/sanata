@@ -2,8 +2,8 @@ import markov from "hx-markov-chain";
 import tokenizer from "hx-tokenizer";
 
 function getInfo(username) {
-  let timeout = new Promise((resolve, reject) => {      
-    setTimeout(reject, 20000, 'request timed out');  
+  let timeout = new Promise((resolve, reject) => {
+    setTimeout(reject, 20000, "request timed out");
   });
 
   let fetch_wrapper = new Promise((resolve, reject) => {
@@ -12,10 +12,12 @@ function getInfo(username) {
       .catch(err => reject(err));
   });
 
-  return Promise.race([timeout, fetch_wrapper]).then(response => response && response.ok ? response.json() : null).catch(err => {
-    console.log("Error fetching user: "+ err);
-    return null;
-  });
+  return Promise.race([timeout, fetch_wrapper])
+    .then(response => response && response.ok ? response.json() : null)
+    .catch(err => {
+      console.log("Error fetching user: " + err);
+      return null;
+    });
 }
 
 function getTweet(info) {

@@ -21,6 +21,10 @@ async function getPage(twitter, options) {
   };
   Object.assign(opts, options);
   const response = await twitter.get("statuses/user_timeline", opts);
+  logger.verbose(response.data.errors);
+  if (response.data.errors) {
+    return;
+  }
   return response.data.filter(t => t.id_str !== opts.max_id);
 }
 
@@ -48,6 +52,9 @@ async function getAll(twitter, username, lastTweetId) {
       opts.max_id = page[page.length - 1].id_str;
     }
     page = await getPage(twitter, opts);
+    if (!page) {
+      break;
+    }
     pages.push(page);
     logger.debug(`@${username} - New page with ${page.length} tweets`);
   } while (page.length && pages.length < MAX_PAGES);
