@@ -17,6 +17,7 @@
     "hx-markov-chain": "^1.2.0",
     "hx-tokenizer": "^1.0.0",
     "mongodb": "^2.2.24",
+    "open-graph-scraper": "^2.5.3",
     "restify": "^4.3.0",
     "twit": "^2.2.5",
     "winston": "^2.3.1"

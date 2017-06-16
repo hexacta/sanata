@@ -16,6 +16,15 @@ server.get("/api/model/:username", async (req, res, next) => {
   next();
 });
 
+server.get("/api/ogdata/:url", async (req, res, next) => {
+  const url = decodeURI(req.params.url);
+  logger.verbose("GET " + req.url );
+  logger.debug("Params " + url );
+  const ogData = await sanata.scrap(url);
+  res.send(ogData);
+  next();
+});
+
 server.listen(8080, () => {
   logger.info(`${server.name} listening at ${server.url}`);
 });

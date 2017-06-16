@@ -10,6 +10,16 @@ function getInfo(username) {
   });
 }
 
+function getOGData(url) {
+  const encodedUrl = encodeURIComponent(url);
+  return fetch(`api/ogdata/${encodedUrl}`).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error("Network response was not ok.");
+  });
+}
+
 function getTweet(info) {
   const chain = markov.run(info.model);
   return {
@@ -23,5 +33,6 @@ function getTweet(info) {
 
 export default {
   getInfo: getInfo,
-  getTweet: getTweet
+  getTweet: getTweet,
+  getOGData: getOGData
 };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import EmbeddedMedia from "./EmbeddedMedia";
 import "./Tweet.css";
 
 class Tweet extends Component {
@@ -14,26 +15,44 @@ class Tweet extends Component {
     return this.state.mounting;
   }
 
+  matchUrl = text => {
+    var matches = text.match(/\bhttps?:\/\/\S+/gi);
+    return matches? matches[0] : null;
+  };
+
   render() {
     const tweet = this.props.tweet;
     const className = this.state.mounting
       ? "tweet-container entrance"
       : "tweet-container";
     return (
-      <div className={className}>
-        <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
-        <div className="tweet">
-          <div className="tweet-header">
-            <strong className="tweet-fullname">{tweet.fullname}</strong>
-            <span className="tweet-username">
-              <span className="fake">@fake</span>{tweet.username}
-            </span>
+      <div className={className} style={divStyle}>
+        <div>
+          <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
+          <div className="tweet">
+            <div className="tweet-header">
+              <strong className="tweet-fullname">{tweet.fullname}</strong>
+              <span className="tweet-username">
+                <span className="fake">@fake</span>{tweet.username}
+              </span>
+            </div>
+            <span className="tweet-text">{tweet.text}</span>
           </div>
-          <span className="tweet-text">{tweet.text}</span>
+
+        </div>
+        <div>
+          <EmbeddedMedia
+            targetUrl={this.matchUrl(tweet.text)}
+            height="200"
+            width="200"
+          />
         </div>
       </div>
     );
   }
 }
+const divStyle = {
+  "flexDirection": "column"
+};
 
 export default Tweet;
