@@ -16,7 +16,9 @@ class App extends Component {
   };
 
   get isLoading() {
-    return this.state.username && this.state.tweets.length === 0 && !this.state.error
+    return this.state.username &&
+      this.state.tweets.length === 0 &&
+      !this.state.error;
   }
 
   componentDidMount = () => {
@@ -41,14 +43,6 @@ class App extends Component {
   };
 
   load = info => {
-    if (!info && !info.model) {
-      this.setState({
-        info: info,
-        tweets: [],
-        error: true
-      });
-      return null;
-    }
     const tweets = Array.from({ length: 10 }, () => service.getTweet(info));
     this.setState({
       info: info,
@@ -81,10 +75,7 @@ class App extends Component {
         <HeightMotion show={!state.username} height={40} className="landing">
           Enter any twitter username to auto-generate fake tweets:
         </HeightMotion>
-        <FormMotion
-          loading={this.isLoading}
-          onChange={this.handleLoad}
-        />
+        <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
         <TweetListBuffer tweets={state.tweets} />
         <HeightMotion show={!state.username} height={45} className="hil">
           An experiment from
@@ -93,17 +84,10 @@ class App extends Component {
             Hexacta Innovation Labs
           </a>
         </HeightMotion>
-        <HeightMotion
-          show={this.isLoading}
-          height={30}
-        >
+        <HeightMotion show={this.isLoading} height={30}>
           <StatusBar username={state.username} />
         </HeightMotion>
-        <HeightMotion
-          show={state.error}
-          height={40}
-          className="landing"
-        >
+        <HeightMotion show={state.error} height={40} className="landing">
           Invalid username
         </HeightMotion>
       </div>
