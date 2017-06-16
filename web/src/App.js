@@ -15,6 +15,10 @@ class App extends Component {
     error: false
   };
 
+  get isLoading() {
+    return this.state.username && this.state.tweets.length === 0 && !this.state.error
+  }
+
   componentDidMount = () => {
     onScrollToBottom(this.loadMore);
     if (this.props.match.params.username) {
@@ -78,7 +82,7 @@ class App extends Component {
           Enter any twitter username to auto-generate fake tweets:
         </HeightMotion>
         <FormMotion
-          loading={state.username && state.tweets.length === 0 && !state.error}
+          loading={this.isLoading}
           onChange={this.handleLoad}
         />
         <TweetListBuffer tweets={state.tweets} />
@@ -90,13 +94,13 @@ class App extends Component {
           </a>
         </HeightMotion>
         <HeightMotion
-          show={state.username && state.tweets.length === 0 && !state.error}
+          show={this.isLoading}
           height={30}
         >
           <StatusBar username={state.username} />
         </HeightMotion>
         <HeightMotion
-          show={state.tweets.length === 0 && state.error}
+          show={state.error}
           height={40}
           className="landing"
         >
