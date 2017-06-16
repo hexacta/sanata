@@ -2,13 +2,22 @@ import markov from "hx-markov-chain";
 import tokenizer from "hx-tokenizer";
 
 function getInfo(username) {
-  return fetch(`api/model/${username}`).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-
-    throw new Error("Network response was not ok.");
+  let timeout = new Promise((resolve, reject) => {
+    setTimeout(reject, 20000, "request timed out");
   });
+
+  let fetchWrapper = new Promise((resolve, reject) => {
+    fetch(`api/model/${username}`)
+      .then(response => resolve(response))
+      .catch(err => reject(err));
+  });
+
+  return Promise.race([timeout, fetchWrapper])
+    .then(response => response && response.ok ? response.json() : null)
+    .catch(err => {
+      console.log("Error fetching user: " + err);
+      return null;
+    });
 }
 
 function getTweet(info) {

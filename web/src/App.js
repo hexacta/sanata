@@ -11,11 +11,14 @@ class App extends Component {
   state = {
     username: null,
     info: null,
-    tweets: []
+    tweets: [],
+    error: false
   };
 
   get isLoading() {
-    return this.state.username && !this.state.tweets.length;
+    return this.state.username &&
+      this.state.tweets.length === 0 &&
+      !this.state.error;
   }
 
   componentDidMount = () => {
@@ -33,9 +36,10 @@ class App extends Component {
   handleUsername = username => {
     this.setState({
       username: username,
-      tweets: []
+      tweets: [],
+      error: false
     });
-    service.getInfo(username).then(this.load);
+    service.getInfo(username).then(this.load).catch(this.loadError);
   };
 
   load = info => {
@@ -43,6 +47,14 @@ class App extends Component {
     this.setState({
       info: info,
       tweets: tweets
+    });
+  };
+
+  loadError = info => {
+    this.setState({
+      info: info,
+      tweets: [],
+      error: true
     });
   };
 
@@ -74,6 +86,9 @@ class App extends Component {
         </HeightMotion>
         <HeightMotion show={this.isLoading} height={30}>
           <StatusBar username={state.username} />
+        </HeightMotion>
+        <HeightMotion show={state.error} height={40} className="landing">
+          Invalid username
         </HeightMotion>
       </div>
     );

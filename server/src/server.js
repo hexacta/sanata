@@ -12,6 +12,9 @@ server.get("/api/model/:username", async (req, res, next) => {
   const username = req.params.username;
   logger.verbose("GET " + req.url);
   const info = await sanata.getInfo(username);
+  if (!info) {
+    res.send(404);
+  }
   res.send(info);
   next();
 });
