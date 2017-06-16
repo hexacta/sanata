@@ -12,12 +12,8 @@ class App extends Component {
     username: null,
     info: null,
     tweets: [],
-    status: "init"
+    error: false
   };
-
-  get isLoading() {
-    return this.state.username && !this.state.tweets.length;
-  }
 
   componentDidMount = () => {
     onScrollToBottom(this.loadMore);
@@ -35,7 +31,7 @@ class App extends Component {
     this.setState({
       username: username,
       tweets: [],
-      status: "loading"
+      error: false
     });
     service.getInfo(username).then(this.load).catch(this.loadError);
   };
@@ -45,15 +41,14 @@ class App extends Component {
       this.setState({
         info: info,
         tweets: [],
-        status: "done"
+        error: true
       });
       return null;
     }
     const tweets = Array.from({ length: 10 }, () => service.getTweet(info));
     this.setState({
       info: info,
-      tweets: tweets,
-      status: "done"
+      tweets: tweets
     });
   };
 
@@ -61,7 +56,7 @@ class App extends Component {
     this.setState({
       info: info,
       tweets: [],
-      status: "done"
+      error: true
     });
   };
 
@@ -83,7 +78,7 @@ class App extends Component {
           Enter any twitter username to auto-generate fake tweets:
         </HeightMotion>
         <FormMotion
-          loading={state.status === "loading"}
+          loading={state.username && state.tweets.length === 0 && !state.error}
           onChange={this.handleLoad}
         />
         <TweetListBuffer tweets={state.tweets} />
@@ -94,11 +89,14 @@ class App extends Component {
             Hexacta Innovation Labs
           </a>
         </HeightMotion>
-        <HeightMotion show={state.status === "loading"} height={30}>
+        <HeightMotion
+          show={state.username && state.tweets.length === 0 && !state.error}
+          height={30}
+        >
           <StatusBar username={state.username} />
         </HeightMotion>
         <HeightMotion
-          show={state.status === "done" && state.tweets.length === 0}
+          show={state.tweets.length === 0 && state.error}
           height={40}
           className="landing"
         >

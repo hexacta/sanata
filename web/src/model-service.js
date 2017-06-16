@@ -6,13 +6,13 @@ function getInfo(username) {
     setTimeout(reject, 20000, "request timed out");
   });
 
-  let fetch_wrapper = new Promise((resolve, reject) => {
+  let fetchWrapper = new Promise((resolve, reject) => {
     fetch(`api/model/${username}`)
       .then(response => resolve(response))
       .catch(err => reject(err));
   });
 
-  return Promise.race([timeout, fetch_wrapper])
+  return Promise.race([timeout, fetchWrapper])
     .then(response => response && response.ok ? response.json() : null)
     .catch(err => {
       console.log("Error fetching user: " + err);
