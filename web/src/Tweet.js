@@ -17,7 +17,7 @@ class Tweet extends Component {
 
   matchUrl = text => {
     var matches = text.match(/\bhttps?:\/\/\S+/gi);
-    return matches? matches[0] : null;
+    return matches ? matches[0] : null;
   };
 
   render() {
@@ -26,7 +26,7 @@ class Tweet extends Component {
       ? "tweet-container entrance"
       : "tweet-container";
     return (
-      <div className={className} style={divStyle}>
+      <div className={className}>
         <div>
           <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
           <div className="tweet">
@@ -40,19 +40,12 @@ class Tweet extends Component {
           </div>
 
         </div>
-        <div>
-          <EmbeddedMedia
-            targetUrl={this.matchUrl(tweet.text)}
-            height="200"
-            width="200"
-          />
+        <div className=".tweet-mediaContainer">
+          <EmbeddedMedia targetUrl={this.matchUrl(tweet.text)} />
         </div>
       </div>
     );
   }
 }
-const divStyle = {
-  "flexDirection": "column"
-};
 
 export default Tweet;

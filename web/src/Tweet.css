@@ -1,111 +1,122 @@
 .tweet-list {
-	padding-top: 15px;
-	border-bottom: 1px solid #e1e8ed;
-	min-height: 100vh;
+  padding-top: 15px;
+  border-bottom: 1px solid #e1e8ed;
+  min-height: 100vh;
 }
 
 .tweet-container {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	width: 80vw;
-	max-width: 500px;
-	min-height: 50px;
-	border: 1px solid #e1e8ed;
-	border-bottom: 0;
-	background: white;
-	padding: 9px 12px 12px 12px;
-	font-family: Arial, sans-serif;
-	line-height: 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 500px;
+  min-height: 50px;
+  border: 1px solid #e1e8ed;
+  border-bottom: 0;
+  background: white;
+  padding: 9px 12px 12px 12px;
+  font-family: Arial, sans-serif;
+  line-height: 18px;
 
-	will-change: opacity, transform;
-	transition-property: opacity, transform;
+  will-change: opacity, transform;
+  transition-property: opacity, transform;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
 .tweet-container.entrance {
-	opacity: 0;
-	transform: translateY(100%);
+  opacity: 0;
+  transform: translateY(100%);
 }
 
 .tweet-header {
-	display: flex;
-	align-items: center;
-	flex-flow: row;
+  display: flex;
+  align-items: center;
+  flex-flow: row;
 }
 
 .tweet-fullname {
-	font-size: 14px;
-	font-weight: bold;
-	color: #14171a;
-	display: block;
-	padding-right: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #14171a;
+  display: block;
+  padding-right: 5px;
 }
 
 .tweet-username {
-	font-size: 13px;
-	color: #657786;
+  font-size: 13px;
+  color: #657786;
 }
 
 .tweet-text {
-	color: #14171a;
-	font-size: 14px;
-	white-space: normal;
-	word-wrap: break-word;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	border: none;
+  color: #14171a;
+  font-size: 14px;
+  white-space: normal;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: none;
 }
 
 .tweet-avatar {
-	width: 48px;
-	min-width: 48px;
-	height: 48px;
-	border-radius: 5px;
-	margin-right: 10px;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
 .tweet-button {
-	display: inline-block;
-	padding: 5.5px 13px 6.5px 11.5px;
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 1;
-	color: rgba(10, 172, 142, 1);
-	background-color: #fff;
-	border: 1px solid rgba(10, 172, 142, 1);
-	border-radius: 4px;
-	height: 17px;
-	cursor: pointer;
+  display: inline-block;
+  padding: 5.5px 13px 6.5px 11.5px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(10, 172, 142, 1);
+  background-color: #fff;
+  border: 1px solid rgba(10, 172, 142, 1);
+  border-radius: 4px;
+  height: 17px;
+  cursor: pointer;
 }
 
 .icon {
-	color: rgba(10, 172, 142, 1);
-	display: inline-block;
-	height: 1.25em;
-	background-repeat: no-repeat;
-	background-size: contain;
-	vertical-align: text-bottom;
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 1;
-	width: 1.25em;
+  color: rgba(10, 172, 142, 1);
+  display: inline-block;
+  height: 1.25em;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: text-bottom;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  width: 1.25em;
 }
 
 .tweet-button:hover {
-	color: #fff;
-	text-decoration: none;
-	background-color: rgba(10, 172, 142, 1);
+  color: #fff;
+  text-decoration: none;
+  background-color: rgba(10, 172, 142, 1);
 }
 
 .slide-in-bottom {
-	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	-moz-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-in-bottom
+    0.5s
+    cubic-bezier(0.250, 0.460, 0.450, 0.940)
+    both;
+  -moz-animation: slide-in-bottom
+    0.5s
+    cubic-bezier(0.250, 0.460, 0.450, 0.940)
+    both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .fake {
-	color: #633;
+  color: #633;
+}
+
+.tweet-mediaContainer {
+  width: 100%;
 }
