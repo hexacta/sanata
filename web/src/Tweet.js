@@ -27,7 +27,7 @@ class Tweet extends Component {
       : "tweet-container";
     return (
       <div className={className}>
-        <div>
+        <div className="tweet-main">
           <img className="tweet-avatar" src={tweet.avatar} alt="avatar" />
           <div className="tweet">
             <div className="tweet-header">
@@ -40,7 +40,7 @@ class Tweet extends Component {
           </div>
 
         </div>
-        <div className=".tweet-mediaContainer">
+        <div className="tweet-mediaPreview">
           <EmbeddedMedia targetUrl={this.matchUrl(tweet.text)} />
         </div>
       </div>

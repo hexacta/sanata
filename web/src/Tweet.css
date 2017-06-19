@@ -30,6 +30,11 @@
   transform: translateY(100%);
 }
 
+.tweet-main {
+  display: flex;
+  flex-direction: row;
+}
+
 .tweet-header {
   display: flex;
   align-items: center;
@@ -117,6 +122,6 @@
   color: #633;
 }
 
-.tweet-mediaContainer {
+.tweet-mediaPreview {
   width: 100%;
 }
