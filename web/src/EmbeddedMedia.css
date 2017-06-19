@@ -1,8 +1,8 @@
 .embedded-image {
   display: block;
   width: auto;
-  border: 1px solid #e1e8ed;
-  border-radius: 3px;
+  border: 3px solid #e1e8ed;
+  border-radius: 10px;
 }
 .embedded-image:hover {
   border-color: #b1b8bd;
@@ -12,4 +12,5 @@
   max-width: 100%;
   max-height: 100%;
   min-width: 100%;
+  border-radius: 8px;
 }
