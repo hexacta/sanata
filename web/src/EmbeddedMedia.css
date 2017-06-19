@@ -1,7 +1,7 @@
 .embedded-image {
   display: block;
   width: auto;
-  border: 3px solid #e1e8ed;
+  border: 2px solid #e1e8ed;
   border-radius: 10px;
 }
 .embedded-image:hover {

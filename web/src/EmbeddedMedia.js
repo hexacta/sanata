@@ -52,9 +52,10 @@ class EmbeddedMedia extends Component {
   };
 
   renderVideo = () => {
+    //Removes the query string in order to avoid autoplay in twitter videos.
     return (
       <iframe
-        src={this.state.source.ogVideo.url}
+        src={this.state.source.ogVideo.url.split("?")[0]}
         width={this.state.source.ogVideo.width}
         height={this.state.source.ogVideo.height}
       />
