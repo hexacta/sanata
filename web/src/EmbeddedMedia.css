@@ -1,14 +1,9 @@
 .embedded-image {
   display: block;
   width: auto;
-  border: 2px solid #e1e8ed;
-  border-radius: 10px;
-}
-.embedded-image:hover {
-  border-color: #b1b8bd;
 }
 
-.embedded-image img ,.embedded-image iframe  {
+.embedded-image img, .embedded-image iframe {
   max-width: 100%;
   max-height: 100%;
   min-width: 100%;
