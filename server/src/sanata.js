@@ -81,7 +81,7 @@ async function resolveUrl(url) {
  * Looks for Open Graph content in the url target
  * @param {String} url 
  */
-async function scrap(url) {
+async function scrapOgData(url) {
   var resolvedUrl = await resolveUrl(url);
   var options = { url: url };
   return ogs(options);
@@ -89,5 +89,5 @@ async function scrap(url) {
 
 export default {
   getInfo: getInfo,
-  scrap: scrap
+  scrapOgData: scrapOgData
 };

@@ -20,7 +20,7 @@ server.get("/api/ogdata/:url", async (req, res, next) => {
   const url = decodeURI(req.params.url);
   logger.verbose("GET " + req.url);
   logger.debug("Params " + url);
-  const ogData = await sanata.scrap(url);
+  const ogData = await sanata.scrapOgData(url);
   res.send(ogData);
   next();
 });
