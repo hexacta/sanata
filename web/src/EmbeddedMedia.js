@@ -46,20 +46,23 @@ class EmbeddedMedia extends Component {
       <img
         src={this.state.source.ogImage.url}
         alt={this.state.source.ogTitle}
-        longdesc={this.state.source.ogDescription}
       />
     );
   };
 
   renderVideo = () => {
-    //Removes the query string in order to avoid autoplay in twitter videos.
-    return (
-      <iframe
-        src={this.state.source.ogVideo.url.split("?")[0]}
-        width={this.state.source.ogVideo.width}
-        height={this.state.source.ogVideo.height}
-      />
-    );
+    if (this.state.source.ogVideo.type === "video/mp4") {
+      return this.renderImage();
+    } else if (this.state.source.ogVideo.type === "text/html") {
+      //Removes the query string in order to avoid autoplay in twitter videos.
+      return (
+        <iframe
+          src={this.state.source.ogVideo.url.split("?")[0]}
+          width={this.state.source.ogVideo.width}
+          height={this.state.source.ogVideo.height}
+        />
+      );
+    }
   };
 
   render() {
