@@ -37,11 +37,10 @@ class Tweet extends Component {
               </span>
             </div>
             <span className="tweet-text">{tweet.text}</span>
+            <div className="tweet-media-preview">
+              <EmbeddedMedia targetUrl={this.matchUrl(tweet.text)} />
+            </div>
           </div>
-
-        </div>
-        <div className="tweet-mediaPreview">
-          <EmbeddedMedia targetUrl={this.matchUrl(tweet.text)} />
         </div>
       </div>
     );

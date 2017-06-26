@@ -122,6 +122,7 @@
   color: #633;
 }
 
-.tweet-mediaPreview {
+.tweet-media-preview {
   width: 100%;
+  padding-top: 10px;
 }
