@@ -1,0 +1,11 @@
+.embedded-image {
+  display: block;
+  width: auto;
+}
+
+.embedded-image img, .embedded-image iframe {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 100%;
+  border-radius: 8px;
+}

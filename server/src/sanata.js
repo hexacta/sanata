@@ -2,6 +2,8 @@ import logger from "winston";
 import twitter from "./twitter-assistant.js";
 import db from "./database-assistant";
 import trainer from "./trainer";
+import request from "request";
+import ogs from "open-graph-scraper";
 
 /**
  * Get old info from database, get new info from twitter,
@@ -49,6 +51,43 @@ async function getInfo(username) {
   // }
 }
 
+/**
+ * Looks for the actual url behind a shortened URL
+ * @param {String} url 
+ */
+async function resolveUrl(url) {
+  return new Promise(function(resolve, reject) {
+    var done = function(error, response) {
+      if (error) {
+        return reject(error, response);
+      }
+      return resolve(response.request.uri.href);
+    };
+    request(
+      {
+        method: "GET",
+        url: url,
+        followAllRedirects: true
+      },
+      done
+    );
+  }).catch(function(error) {
+    // if (error) console.log("Resolve Url error: ", error);
+    // there was a error passed back
+  });
+}
+
+/**
+ * Looks for Open Graph content in the url target
+ * @param {String} url 
+ */
+async function scrapOgData(url) {
+  var resolvedUrl = await resolveUrl(url);
+  var options = { url: url };
+  return ogs(options);
+}
+
 export default {
-  getInfo: getInfo
+  getInfo: getInfo,
+  scrapOgData: scrapOgData
 };
