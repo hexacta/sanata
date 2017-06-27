@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextboxButton from "./TextboxButton";
 import Spinner from "./Spinner";
+import { FormContainer } from "./Style";
 import "./Form.css";
 
 class Form extends Component {
@@ -25,7 +26,7 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="form" style={this.formStyle}>
+      <FormContainer style={this.formStyle}>
         <Spinner style={this.spinnerStyle} />
         <TextboxButton
           onSubmit={this.props.onChange}
@@ -33,7 +34,7 @@ class Form extends Component {
           prefix="@"
           style={this.inputStyle}
         />
-      </div>
+      </FormContainer>
     );
   }
 }

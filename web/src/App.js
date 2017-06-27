@@ -5,6 +5,7 @@ import StatusBar from "./StatusBar";
 import TweetListBuffer from "./TweetListBuffer";
 import service from "./model-service";
 import onScrollToBottom from "./scroller";
+import { MainContainer } from "./Style";
 import "./App.css";
 
 class App extends Component {
@@ -71,7 +72,7 @@ class App extends Component {
   render() {
     const state = this.state;
     return (
-      <div className="container">
+      <MainContainer>
         <HeightMotion show={!state.username} height={40} className="landing">
           Enter any twitter username to auto-generate fake tweets:
         </HeightMotion>
@@ -90,7 +91,7 @@ class App extends Component {
         <HeightMotion show={state.error} height={40} className="landing">
           Invalid username
         </HeightMotion>
-      </div>
+      </MainContainer>
     );
   }
 }

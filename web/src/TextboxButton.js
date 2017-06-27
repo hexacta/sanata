@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormInput, FormButton, FormSpan, FormWrapper} from "./Style"
 
 class TextboxButton extends Component {
   constructor(props) {
@@ -25,17 +26,17 @@ class TextboxButton extends Component {
 
   render() {
     return (
-      <div style={this.props.style} className="wrapper">
-        <span>{this.props.prefix}</span>
-        <input
+      <FormWrapper style={this.props.style}>
+        <FormSpan>{this.props.prefix}</FormSpan>
+        <FormInput
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
           placeholder={this.props.placeholder}
         />
-        <button onClick={this.handleSumbit}>Load</button>
-      </div>
+        <FormButton onClick={this.handleSumbit}>Load</FormButton>
+      </FormWrapper>
     );
   }
 }
