@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TextboxButton from "./TextboxButton";
 import Spinner from "./Spinner";
 import { FormContainer } from "./Style";
-import "./Form.css";
 
 class Form extends Component {
   get inputStyle() {
