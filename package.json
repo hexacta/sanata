@@ -29,5 +29,8 @@
 		"npm-run-all": "^4.0.2",
 		"prettier": "^0.21.0",
 		"prettier-check": "^1.0.0"
+	},
+	"dependencies": {
+		"glamor": "^2.20.25"
 	}
 }

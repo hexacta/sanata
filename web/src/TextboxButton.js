@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormInput, FormButton, FormSpan, FormWrapper} from "./Style"
+import { FormInput, FormButton, FormSpan, FormWrapper } from "./Style";
 
 class TextboxButton extends Component {
   constructor(props) {

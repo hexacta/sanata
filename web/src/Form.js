@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TextboxButton from "./TextboxButton";
 import Spinner from "./Spinner";
 import { FormContainer } from "./Style";
-import "./Form.css";
 
 class Form extends Component {
   get inputStyle() {
@@ -15,18 +14,9 @@ class Form extends Component {
       : { display: "none" };
   }
 
-  get formStyle() {
-    return {
-      height: `${this.props.height}px`,
-      width: `${this.props.width}px`,
-      borderRadius: `${this.props.radius}px`,
-      backgroundColor: `rgba(10,172,142,${this.props.alpha})`
-    };
-  }
-
   render() {
     return (
-      <FormContainer style={this.formStyle}>
+      <FormContainer {...this.props}>
         <Spinner style={this.spinnerStyle} />
         <TextboxButton
           onSubmit={this.props.onChange}
