@@ -30,7 +30,7 @@ export const FormContainer = glamorous.div(
 	     	borderRadius: `${props.radius}px`,
 	     	backgroundColor: `rgba(10,172,142,${props.alpha})`
 	    }
-    ),
+    )
 );
 
 export const FormInput = glamorous.input(
@@ -93,7 +93,12 @@ const SpinnerStyle = glamorous.div(
 		position: 'relative',
 		textAlign: 'center',
 		animation: `${skRotate} 2.0s infinite linear`
-	}
+	},
+	props => (
+		props.loading
+  			? { opacity: props.alpha }
+  			: { display: "none" }
+	)
 );
 
 const Dot1Style = glamorous.div(
@@ -117,9 +122,9 @@ const Dot2Style = glamorous(Dot1Style)(
 	}
 );
 
-export const SpinnerContainer = () => {
+export const SpinnerContainer = (props) => {
 	return (
-		<SpinnerStyle>
+		<SpinnerStyle {...props}>
 	        <Dot1Style />
 	        <Dot2Style />
 	    </SpinnerStyle>

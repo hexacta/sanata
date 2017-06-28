@@ -5,7 +5,7 @@ import { SpinnerContainer } from "./Style";
 class Spinner extends Component {
   render() {
     return (
-      <SpinnerContainer style={this.props.style} />
+      <SpinnerContainer {...this.props} />
     );
   }
 }

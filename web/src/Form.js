@@ -8,16 +8,10 @@ class Form extends Component {
     return this.props.loading ? { display: "none" } : {};
   }
 
-  get spinnerStyle() {
-    return this.props.loading
-      ? { opacity: this.props.alpha }
-      : { display: "none" };
-  }
-
   render() {
     return (
       <FormContainer {...this.props}>
-        <Spinner style={this.spinnerStyle} />
+        <Spinner {...this.props} />
         <TextboxButton
           onSubmit={this.props.onChange}
           placeholder="username"
