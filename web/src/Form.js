@@ -2,37 +2,19 @@ import React, { Component } from "react";
 import TextboxButton from "./TextboxButton";
 import Spinner from "./Spinner";
 import { FormContainer } from "./Style";
-import "./Form.css";
 
 class Form extends Component {
-  get inputStyle() {
-    return this.props.loading ? { display: "none" } : {};
-  }
-
-  get spinnerStyle() {
-    return this.props.loading
-      ? { opacity: this.props.alpha }
-      : { display: "none" };
-  }
-
-  get formStyle() {
-    return {
-      height: `${this.props.height}px`,
-      width: `${this.props.width}px`,
-      borderRadius: `${this.props.radius}px`,
-      backgroundColor: `rgba(10,172,142,${this.props.alpha})`
-    };
-  }
 
   render() {
+    var { onChange, ...other } = this.props; //pass all props except OnChange
     return (
-      <FormContainer style={this.formStyle}>
-        <Spinner style={this.spinnerStyle} />
+      <FormContainer {...other}>
+        <Spinner {...this.props} />
         <TextboxButton
           onSubmit={this.props.onChange}
           placeholder="username"
           prefix="@"
-          style={this.inputStyle}
+          {...other}
         />
       </FormContainer>
     );

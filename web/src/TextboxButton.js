@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormInput, FormButton, FormSpan, FormWrapper} from "./Style"
+import { FormInput, FormButton, FormSpan, FormWrapper } from "./Style";
 
 class TextboxButton extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class TextboxButton extends Component {
 
   render() {
     return (
-      <FormWrapper style={this.props.style}>
+      <FormWrapper {...this.props}>
         <FormSpan>{this.props.prefix}</FormSpan>
         <FormInput
           type="text"

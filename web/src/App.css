@@ -36,8 +36,3 @@ html, body, #root {
   color: inherit;
   font-weight: bold;
 }
-
-.status-bar {
-  color: #555;
-  padding-top: 30px
-}
