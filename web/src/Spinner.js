@@ -4,9 +4,7 @@ import { SpinnerContainer } from "./Style";
 // From https://github.com/tobiasahlin/SpinKit
 class Spinner extends Component {
   render() {
-    return (
-      <SpinnerContainer {...this.props} />
-    );
+    return <SpinnerContainer {...this.props} />;
   }
 }
 

@@ -1,0 +1,33 @@
+{
+	"name": "sanata",
+	"version": "0.1.0",
+	"scripts": {
+		"postinstall": "run-s install:server install:web",
+		"install:web": "cd web && yarn install",
+		"install:server": "cd server && yarn install",
+		"start": "run-p start:web start:server",
+		"start:web": "npm start --prefix web",
+		"start:server": "npm start --prefix server",
+		"start:mongo": "docker run --rm -p 27017:27017 mongo",
+		"start:all": "run-p start:mongo start",
+		"start:sync": "browser-sync start --proxy localhost:3000",
+		"build": "run-p build:web build:server",
+		"build:web": "cd web && npm run build",
+		"build:server": "cd server && npm run build",
+		"predockerize": "npm run build",
+		"dockerize": "run-p dockerize:web dockerize:server",
+		"dockerize:web": "docker build -t sanata-web -f docker/nginx.dockerfile .",
+		"dockerize:server": "docker build -t sanata-srv -f docker/node.dockerfile .",
+		"preup": "npm run build",
+		"up": "docker-compose -f docker/docker-compose.yml up --build",
+		"test": "run-s style-check",
+		"style": "prettier web/src/**/*.js server/src/**/*.js --write",
+		"style-check": "prettier-check web/src/**/*.js server/src/**/*.js"
+	},
+	"devDependencies": {
+		"browser-sync": "^2.18.8",
+		"npm-run-all": "^4.0.2",
+		"prettier": "^0.21.0",
+		"prettier-check": "^1.0.0"
+	}
+}
