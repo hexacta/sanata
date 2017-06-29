@@ -69,6 +69,18 @@ export const FormWrapper = glamorous.div(
 		alignItems: 'center',
 		justifyContent: 'center',
 		background: 'white'
+	},
+	props => (
+		props.loading 
+			? { display: "none" } 
+			: {}
+	)
+);
+
+export const StatusBarContainer = glamorous.div(
+	{
+		color: '#555',
+      	paddingTop: '30px'
 	}
 );
 

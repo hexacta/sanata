@@ -4,9 +4,6 @@ import Spinner from "./Spinner";
 import { FormContainer } from "./Style";
 
 class Form extends Component {
-  get inputStyle() {
-    return this.props.loading ? { display: "none" } : {};
-  }
 
   render() {
     return (
@@ -16,7 +13,7 @@ class Form extends Component {
           onSubmit={this.props.onChange}
           placeholder="username"
           prefix="@"
-          style={this.inputStyle}
+          {...this.props}
         />
       </FormContainer>
     );
