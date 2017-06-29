@@ -26,7 +26,7 @@ class TextboxButton extends Component {
 
   render() {
     return (
-      <FormWrapper style={this.props.style}>
+      <FormWrapper {...this.props}>
         <FormSpan>{this.props.prefix}</FormSpan>
         <FormInput
           type="text"
