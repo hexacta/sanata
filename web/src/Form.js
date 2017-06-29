@@ -6,14 +6,15 @@ import { FormContainer } from "./Style";
 class Form extends Component {
 
   render() {
+    var { onChange, ...other } = this.props; //pass all props except OnChange
     return (
-      <FormContainer {...this.props}>
+      <FormContainer {...other}>
         <Spinner {...this.props} />
         <TextboxButton
           onSubmit={this.props.onChange}
           placeholder="username"
           prefix="@"
-          {...this.props}
+          {...other}
         />
       </FormContainer>
     );
