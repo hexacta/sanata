@@ -5,8 +5,17 @@ import StatusBar from "./StatusBar";
 import TweetListBuffer from "./TweetListBuffer";
 import service from "./model-service";
 import onScrollToBottom from "./scroller";
-import { MainContainer } from "./Style";
+import glamorous from "glamorous";
 import "./App.css";
+
+const MainContainer = glamorous.div({
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+  justifyContent: "center",
+  width: "100%",
+  minHeight: "100%"
+});
 
 class App extends Component {
   state = {

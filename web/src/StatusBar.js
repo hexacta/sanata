@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { StatusBarContainer } from "./Style";
+import glamorous from "glamorous";
+
+const StatusBarContainer = glamorous.div({
+  color: "#555",
+  paddingTop: "30px"
+});
 
 class StatusBar extends Component {
   render() {

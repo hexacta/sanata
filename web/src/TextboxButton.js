@@ -1,5 +1,39 @@
 import React, { Component } from "react";
-import { FormInput, FormButton, FormSpan, FormWrapper } from "./Style";
+import glamorous from "glamorous";
+
+const FormInput = glamorous.input({
+  flex: "1",
+  border: "0",
+  backgroundColor: "transparent",
+  height: "85%",
+  padding: "2px 2px 2px 2px",
+  outline: "none"
+});
+
+const FormButton = glamorous.button({
+  border: "0",
+  backgroundColor: "transparent",
+  height: "100%",
+  cursor: "pointer",
+  outline: "none"
+});
+
+const FormSpan = glamorous.span({
+  color: "grey",
+  marginLeft: "8px"
+});
+
+const FormWrapper = glamorous.div(
+  {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "white"
+  },
+  props => props.loading && { display: "none" }
+);
 
 class TextboxButton extends Component {
   constructor(props) {
@@ -26,7 +60,7 @@ class TextboxButton extends Component {
 
   render() {
     return (
-      <FormWrapper {...this.props}>
+      <FormWrapper loading={this.props.loading}>
         <FormSpan>{this.props.prefix}</FormSpan>
         <FormInput
           type="text"
