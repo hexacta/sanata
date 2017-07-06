@@ -11,7 +11,7 @@ services:
       context: ..
       dockerfile: docker/nginx.dockerfile
     ports:
-     - "80:80"
+     - "4001:4001"
   mongo:
     image: "mongo"
 #docker-compose -p docker up --build
