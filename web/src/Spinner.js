@@ -12,16 +12,13 @@ const skBounce = css.keyframes({
   "50%": { transform: `scale(1.0)` }
 });
 
-const SpinnerStyle = glamorous.div(
-  {
-    width: "40px",
-    height: "40px",
-    position: "relative",
-    textAlign: "center",
-    animation: `${skRotate} 2.0s infinite linear`
-  },
-  props => props.loading ? { opacity: props.alpha } : { display: "none" }
-);
+const SpinnerStyle = glamorous.div({
+  width: "40px",
+  height: "40px",
+  position: "relative",
+  textAlign: "center",
+  animation: `${skRotate} 2.0s infinite linear`
+});
 
 const Dot1Style = glamorous.div({
   width: "60%",
@@ -42,9 +39,15 @@ const Dot2Style = glamorous(Dot1Style)({
 
 // From https://github.com/tobiasahlin/SpinKit
 class Spinner extends Component {
+  get spinnerDynamicStyle() {
+    return this.props.loading
+      ? { opacity: this.props.alpha }
+      : { display: "none" };
+  }
+
   render() {
     return (
-      <SpinnerStyle loading={this.props.loading}>
+      <SpinnerStyle style={this.spinnerDynamicStyle}>
         <Dot1Style />
         <Dot2Style />
       </SpinnerStyle>

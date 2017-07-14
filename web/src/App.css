@@ -6,15 +6,6 @@ html, body, #root {
   height: 100%;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-}
-
 .landing {
   color: #555;
   text-align: center;

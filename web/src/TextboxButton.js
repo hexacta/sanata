@@ -23,17 +23,14 @@ const FormSpan = glamorous.span({
   marginLeft: "8px"
 });
 
-const FormWrapper = glamorous.div(
-  {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "white"
-  },
-  props => props.loading && { display: "none" }
-);
+const FormWrapper = glamorous.div({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "white"
+});
 
 class TextboxButton extends Component {
   constructor(props) {
@@ -58,9 +55,13 @@ class TextboxButton extends Component {
     }
   }
 
+  get FormWrapperDynamicStyle() {
+    return this.props.loading ? { display: "none" } : {};
+  }
+
   render() {
     return (
-      <FormWrapper loading={this.props.loading}>
+      <FormWrapper style={this.FormWrapperDynamicStyle}>
         <FormSpan>{this.props.prefix}</FormSpan>
         <FormInput
           type="text"
