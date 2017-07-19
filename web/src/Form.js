@@ -1,39 +1,40 @@
 import React, { Component } from "react";
 import TextboxButton from "./TextboxButton";
 import Spinner from "./Spinner";
-import "./Form.css";
+import glamorous from "glamorous";
+
+const FormContainer = glamorous.div({
+  border: "1px solid rgba(10, 172, 142, 1)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  overflow: "hidden",
+  backgroundColor: "white",
+  marginTop: "15px"
+});
 
 class Form extends Component {
-  get inputStyle() {
-    return this.props.loading ? { display: "none" } : {};
-  }
-
-  get spinnerStyle() {
-    return this.props.loading
-      ? { opacity: this.props.alpha }
-      : { display: "none" };
-  }
-
-  get formStyle() {
+  get formDynamicStyle() {
+    const { height, width, radius, alpha } = this.props;
     return {
-      height: `${this.props.height}px`,
-      width: `${this.props.width}px`,
-      borderRadius: `${this.props.radius}px`,
-      backgroundColor: `rgba(10,172,142,${this.props.alpha})`
+      height: `${height}px`,
+      width: `${width}px`,
+      borderRadius: `${radius}px`,
+      backgroundColor: `rgba(10,172,142,${alpha})`
     };
   }
 
   render() {
     return (
-      <div className="form" style={this.formStyle}>
-        <Spinner style={this.spinnerStyle} />
+      <FormContainer style={this.formDynamicStyle}>
+        <Spinner loading={this.props.loading} />
         <TextboxButton
           onSubmit={this.props.onChange}
           placeholder="username"
           prefix="@"
-          style={this.inputStyle}
+          loading={this.props.loading}
         />
-      </div>
+      </FormContainer>
     );
   }
 }

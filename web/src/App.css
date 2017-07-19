@@ -6,15 +6,6 @@ html, body, #root {
   height: 100%;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-}
-
 .landing {
   color: #555;
   text-align: center;
@@ -35,9 +26,4 @@ html, body, #root {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
-}
-
-.status-bar {
-  color: #555;
-  padding-top: 30px
 }
