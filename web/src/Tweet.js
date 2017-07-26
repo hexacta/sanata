@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import EmbeddedMedia from "./EmbeddedMedia";
 import glamorous from "glamorous";
-import "./Tweet.css";
 
 const MainContainer = glamorous.div({
   display: "flex",
@@ -53,6 +52,31 @@ const TweetFullname = glamorous.strong({
   paddingRight: "5px"
 });
 
+const TweetUsername = glamorous.span({
+  fontSize: "13px",
+  color: "#657786"
+});
+
+const FakePrefix = glamorous.span({
+  color: "#633"
+});
+
+const TweetText = glamorous.span({
+  color: "#14171a",
+  fontSize: "14px",
+  whiteSpace: "normal",
+  wordWrap: "break-word",
+  margin: "0",
+  padding: "0",
+  listStyle: "none",
+  border: "none"
+});
+
+const TweetMediaPreview = glamorous.div({
+  width: "100%",
+  paddingTop: "10px"
+});
+
 class Tweet extends Component {
   state = {
     mounting: true
@@ -72,22 +96,22 @@ class Tweet extends Component {
   };
 
   render() {
-    const tweet = this.props.tweet;
+    const { tweet, mounting } = this.props;
     return (
-      <MainContainer mounting={this.state.mounting}>
+      <MainContainer mounting={mounting}>
         <TweetMain>
           <TweetAvatar src={tweet.avatar} alt="avatar" />
           <TweetBody>
             <TweetHeader>
               <TweetFullname>{tweet.fullname}</TweetFullname>
-              <span className="tweet-username">
-                <span className="fake">@fake</span>{tweet.username}
-              </span>
+              <TweetUsername>
+                <FakePrefix>@fake</FakePrefix>{tweet.username}
+              </TweetUsername>
             </TweetHeader>
-            <span className="tweet-text">{tweet.text}</span>
-            <div className="tweet-media-preview">
+            <TweetText>{tweet.text}</TweetText>
+            <TweetMediaPreview>
               <EmbeddedMedia targetUrl={this.matchUrl(tweet.text)} />
-            </div>
+            </TweetMediaPreview>
           </TweetBody>
         </TweetMain>
       </MainContainer>
