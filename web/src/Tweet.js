@@ -21,7 +21,7 @@ const MainContainer = glamorous.div({
   transitionProperty: "opacity, transform",
   transitionDuration: "0.5s",
   transitionTimingFunction: "cubic-bezier(0.250, 0.460, 0.450, 0.940)"
-}, prop => prop.mounting && {opacity: "0", transform: "translateY(100%)"});
+}, props => props.mounting && {opacity: "0" , transform: "translateY(100%)"});
 
 const TweetMain = glamorous.div({
   display: "flex",
@@ -96,7 +96,8 @@ class Tweet extends Component {
   };
 
   render() {
-    const { tweet, mounting } = this.props;
+    const tweet = this.props.tweet;
+    const mounting = this.state.mounting;
     return (
       <MainContainer mounting={mounting}>
         <TweetMain>
