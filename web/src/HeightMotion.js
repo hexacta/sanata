@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import { Motion, spring } from "react-motion";
+import glamorous from "glamorous";
+
+const Landing = glamorous.div({
+  color: "#555",
+  textAlign: "center",
+  maxWidth: "250px",
+  overflow: "hidden"
+}, props => props.bottom && {paddingTop: "20px", lineHeight: "1.3em"});
 
 class HeightMotion extends Component {
   get motionStyle() {
@@ -25,9 +33,9 @@ class HeightMotion extends Component {
     return (
       <Motion style={this.motionStyle}>
         {snapshot => (
-          <div style={this.getStyle(snapshot)} className={this.props.className}>
+          <Landing style={this.getStyle(snapshot)} bottom={this.props.bottom}>
             {this.props.children}
-          </div>
+          </Landing>
         )}
       </Motion>
     );
