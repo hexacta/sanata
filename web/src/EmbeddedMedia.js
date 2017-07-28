@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import service from "./model-service";
-//import "./EmbeddedMedia.css";
 import glamorous from "glamorous";
 
 const EmbeddedImage = glamorous.a({
