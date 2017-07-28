@@ -85,10 +85,10 @@ class EmbeddedMedia extends Component {
   };
 
   render() {
-    return this.state.visible 
-    && <EmbeddedImage href={this.getHref()} target="_blank">
+    return this.state.visible &&
+      <EmbeddedImage href={this.getHref()} target="_blank">
         {this.renderMedia()}
-      </EmbeddedImage>
+      </EmbeddedImage>;
   }
 }
 

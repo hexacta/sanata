@@ -2,26 +2,29 @@ import React, { Component } from "react";
 import EmbeddedMedia from "./EmbeddedMedia";
 import glamorous from "glamorous";
 
-const MainContainer = glamorous.div({
-  display: "flex",
-  alignItems: "flex-start",
-  justifyContent: "flex-start",
-  flexDirection: "column",
-  width: "80vw",
-  maxWidth: "500px",
-  minHeight: "50px",
-  border: "1px solid #e1e8ed",
-  borderBottom: "0",
-  background: "white",
-  padding: "9px 12px 12px 12px",
-  fontFamily: "Arial, sans-serif",
-  lineHeight: "18px",
+const MainContainer = glamorous.div(
+  {
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    width: "80vw",
+    maxWidth: "500px",
+    minHeight: "50px",
+    border: "1px solid #e1e8ed",
+    borderBottom: "0",
+    background: "white",
+    padding: "9px 12px 12px 12px",
+    fontFamily: "Arial, sans-serif",
+    lineHeight: "18px",
 
-  willChange: "opacity, transform",
-  transitionProperty: "opacity, transform",
-  transitionDuration: "0.5s",
-  transitionTimingFunction: "cubic-bezier(0.250, 0.460, 0.450, 0.940)"
-}, props => props.mounting && {opacity: "0" , transform: "translateY(100%)"});
+    willChange: "opacity, transform",
+    transitionProperty: "opacity, transform",
+    transitionDuration: "0.5s",
+    transitionTimingFunction: "cubic-bezier(0.250, 0.460, 0.450, 0.940)"
+  },
+  props => props.mounting && { opacity: "0", transform: "translateY(100%)" }
+);
 
 const TweetMain = glamorous.div({
   display: "flex",
@@ -36,7 +39,7 @@ const TweetAvatar = glamorous.img({
   marginRight: "10px"
 });
 
-const TweetBody = glamorous.div({ });
+const TweetBody = glamorous.div({});
 
 const TweetHeader = glamorous.div({
   display: "flex",
