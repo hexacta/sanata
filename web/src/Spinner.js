@@ -12,7 +12,7 @@ const skBounce = css.keyframes({
   "50%": { transform: `scale(1.0)` }
 });
 
-const SpinnerStyle = glamorous.div({
+const SpinnerContainer = glamorous.div({
   width: "40px",
   height: "40px",
   position: "relative",
@@ -20,7 +20,7 @@ const SpinnerStyle = glamorous.div({
   animation: `${skRotate} 2.0s infinite linear`
 });
 
-const Dot1Style = glamorous.div({
+const Dot1 = glamorous.div({
   width: "60%",
   height: "60%",
   display: "inline-block",
@@ -31,7 +31,7 @@ const Dot1Style = glamorous.div({
   animation: `${skBounce} 2.0s infinite ease-in-out`
 });
 
-const Dot2Style = glamorous(Dot1Style)({
+const Dot2 = glamorous(Dot1)({
   top: "auto",
   bottom: "0",
   animationDelay: "-1.0s"
@@ -47,10 +47,10 @@ class Spinner extends Component {
 
   render() {
     return (
-      <SpinnerStyle style={this.spinnerDynamicStyle}>
-        <Dot1Style />
-        <Dot2Style />
-      </SpinnerStyle>
+      <SpinnerContainer style={this.spinnerDynamicStyle}>
+        <Dot1 />
+        <Dot2 />
+      </SpinnerContainer>
     );
   }
 }

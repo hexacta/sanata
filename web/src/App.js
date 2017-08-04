@@ -6,7 +6,6 @@ import TweetListBuffer from "./TweetListBuffer";
 import service from "./model-service";
 import onScrollToBottom from "./scroller";
 import glamorous from "glamorous";
-import "./App.css";
 
 const MainContainer = glamorous.div({
   display: "flex",
@@ -15,6 +14,12 @@ const MainContainer = glamorous.div({
   justifyContent: "center",
   width: "100%",
   minHeight: "100%"
+});
+
+const Link = glamorous.a({
+  textDecoration: "none",
+  color: "inherit",
+  fontWeight: "bold"
 });
 
 class App extends Component {
@@ -82,22 +87,22 @@ class App extends Component {
     const state = this.state;
     return (
       <MainContainer>
-        <HeightMotion show={!state.username} height={40} className="landing">
+        <HeightMotion show={!state.username} height={40}>
           Enter any twitter username to auto-generate fake tweets:
         </HeightMotion>
         <FormMotion loading={this.isLoading} onChange={this.handleLoad} />
         <TweetListBuffer tweets={state.tweets} />
-        <HeightMotion show={!state.username} height={45} className="hil">
+        <HeightMotion show={!state.username} height={45} bottom>
           An experiment from
           <br />
-          <a href="https://showcase.hexacta.com/sanata">
+          <Link href="https://showcase.hexacta.com/sanata">
             Hexacta Innovation Labs
-          </a>
+          </Link>
         </HeightMotion>
-        <HeightMotion show={this.isLoading} height={30}>
+        <HeightMotion show={this.isLoading} height={60}>
           <StatusBar username={state.username} />
         </HeightMotion>
-        <HeightMotion show={state.error} height={40} className="landing">
+        <HeightMotion show={state.error} height={40}>
           Invalid username
         </HeightMotion>
       </MainContainer>

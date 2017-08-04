@@ -1,6 +1,25 @@
 import React, { Component } from "react";
 import service from "./model-service";
-import "./EmbeddedMedia.css";
+import glamorous from "glamorous";
+
+const EmbeddedImage = glamorous.a({
+  display: "block",
+  width: "auto"
+});
+
+const ImgContainer = glamorous.img({
+  maxWidth: "100%",
+  maxHeight: "100%",
+  minWidth: "100%",
+  borderRadius: "8px"
+});
+
+const IframeContainer = glamorous.iframe({
+  maxWidth: "100%",
+  maxHeight: "100%",
+  minWidth: "100%",
+  borderRadius: "8px"
+});
 
 class EmbeddedMedia extends Component {
   state = {
@@ -43,7 +62,7 @@ class EmbeddedMedia extends Component {
 
   renderImage = () => {
     return (
-      <img
+      <ImgContainer
         src={this.state.source.ogImage.url}
         alt={this.state.source.ogTitle}
       />
@@ -56,7 +75,7 @@ class EmbeddedMedia extends Component {
     } else if (this.state.source.ogVideo.type === "text/html") {
       //Removes the query string in order to avoid autoplay in twitter videos.
       return (
-        <iframe
+        <IframeContainer
           src={this.state.source.ogVideo.url.split("?")[0]}
           width={this.state.source.ogVideo.width}
           height={this.state.source.ogVideo.height}
@@ -66,11 +85,10 @@ class EmbeddedMedia extends Component {
   };
 
   render() {
-    return this.state.visible
-      ? <a href={this.getHref()} target="_blank" className="embedded-image">
-          {this.renderMedia()}
-        </a>
-      : null;
+    return this.state.visible &&
+      <EmbeddedImage href={this.getHref()} target="_blank">
+        {this.renderMedia()}
+      </EmbeddedImage>;
   }
 }
 
